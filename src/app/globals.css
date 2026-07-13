@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-marfim text-grafite font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-rose/20 text-grafite;
+  }
+
+  /* Foco visível e elegante para navegação por teclado (acessibilidade) */
+  :focus-visible {
+    @apply outline-none ring-2 ring-rose ring-offset-2 ring-offset-marfim;
+  }
+}
+
+@layer components {
+  /* Largura de leitura confortável para blocos de texto longos */
+  .container-narrow {
+    @apply mx-auto w-full max-w-3xl px-6;
+  }
+  .container-wide {
+    @apply mx-auto w-full max-w-6xl px-6;
+  }
+
+  /* Filete água-marinha decorativo (assinatura visual da marca) */
+  .rule-gold {
+    @apply h-px w-16 bg-gradient-to-r from-aqua to-transparent;
+  }
+}
+
+/* Respeita usuárias que preferem menos movimento (acessibilidade) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,78 @@
+/**
+ * ============================================================
+ *  CAMPANHAS / PROMOÇÕES — EDITE AQUI (o mais fácil de tudo)
+ * ============================================================
+ *  Para lançar uma promoção nova: copie um bloco, ajuste os
+ *  textos e o preço, e defina `active: true`.
+ *  Para tirar do ar: mude para `active: false` (ou apague).
+ *
+ *  ⚠️ ATENÇÃO: os valores, sessões e datas abaixo são FICTÍCIOS —
+ *  preenchidos apenas para a cliente visualizar o protótipo com
+ *  aparência comercial completa. NÃO são preços reais. Antes de
+ *  publicar, confirme cada valor e condição com a cliente/responsável
+ *  técnica e substitua os dados marcados como fictícios.
+ * ============================================================
+ */
+
+export type Campaign = {
+  id: string;
+  active: boolean;
+  badge: string; // selo ("Oferta de julho", "Vagas limitadas")
+  title: string;
+  description: string;
+  sessions?: string; // ex.: "Pacote de 10 sessões"
+  referencePrice?: string; // preço "de" (riscado)
+  currentPrice?: string; // preço "por"
+  installment?: string; // ex.: "ou 3x sem juros"
+  validUntil?: string; // validade
+  legalNote?: string; // observação legal
+  highlight?: boolean; // destaque visual
+};
+
+export const campaigns: Campaign[] = [
+  {
+    id: "protocolo-corporal-verao",
+    active: true,
+    badge: "Protocolo em destaque",
+    title: "Protocolo Corporal — Criolipólise + Drenagem",
+    description:
+      "Pacote combinado para contorno corporal e sensação de leveza, com avaliação individual e acompanhamento em todas as sessões.",
+    sessions: "Pacote com 6 sessões",
+    referencePrice: "R$ 1.800",
+    currentPrice: "R$ 1.290",
+    installment: "ou 6x de R$ 215 sem juros",
+    validUntil: "Válido até 31/08/2026",
+    legalNote:
+      "Valor fictício para apresentação do protótipo — confirmar preço final e condições com a responsável técnica antes da publicação. Resultados dependem de avaliação individual.",
+    highlight: true,
+  },
+  {
+    id: "facial-vico",
+    active: true,
+    badge: "Cuidado facial",
+    title: "Protocolo Facial de Viço",
+    description:
+      "Sequência de limpeza de pele profunda e hidratação para saúde e aspecto saudável da pele, com orientação de rotina para casa.",
+    sessions: "Pacote com 4 sessões",
+    referencePrice: "R$ 560",
+    currentPrice: "R$ 390",
+    installment: "ou 3x de R$ 130 sem juros",
+    validUntil: "Válido até 31/08/2026",
+    legalNote:
+      "Valor fictício para apresentação do protótipo — confirmar preço final e condições antes da publicação.",
+  },
+  {
+    id: "primeira-avaliacao",
+    active: true,
+    badge: "Para novas clientes",
+    title: "Sua primeira avaliação gratuita",
+    description:
+      "Agende sua avaliação inicial sem custo e conheça o Espaço Néia. Um momento para entender seus objetivos e apresentar as melhores opções para você.",
+    sessions: "Avaliação individual",
+    currentPrice: "Gratuita",
+    validUntil: "Agenda sujeita à disponibilidade",
+    legalNote: "Avaliação gratuita para novas clientes, mediante agendamento prévio.",
+  },
+];
+
+export const activeCampaigns = () => campaigns.filter((c) => c.active);
