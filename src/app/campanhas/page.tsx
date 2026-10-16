@@ -4,6 +4,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { CampaignCard } from "@/components/ui/CampaignCard";
 import { CtaBanner } from "@/components/ui/CtaBanner";
 import { activeCampaigns } from "@/data/campaigns";
+import { visible } from "@/lib/drafts";
 
 export const metadata: Metadata = {
   title: "Campanhas e Promoções | Espaço Néia Cotia",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function CampanhasPage() {
-  const promos = activeCampaigns();
+  const promos = visible(activeCampaigns());
   return (
     <>
       <Section className="bg-gradient-to-b from-creme to-marfim">

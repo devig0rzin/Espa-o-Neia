@@ -14,9 +14,12 @@
  * ============================================================
  */
 
+import type { ContentStatus } from "./types";
+
 export type Campaign = {
   id: string;
   active: boolean;
+  status: ContentStatus; // "approved" só com preço e condições confirmados
   badge: string; // selo ("Oferta de julho", "Vagas limitadas")
   title: string;
   description: string;
@@ -33,6 +36,7 @@ export const campaigns: Campaign[] = [
   {
     id: "protocolo-corporal-verao",
     active: true,
+    status: "draft",
     badge: "Protocolo em destaque",
     title: "Protocolo Corporal — Criolipólise + Drenagem",
     description:
@@ -49,6 +53,7 @@ export const campaigns: Campaign[] = [
   {
     id: "facial-vico",
     active: true,
+    status: "draft",
     badge: "Cuidado facial",
     title: "Protocolo Facial de Viço",
     description:
@@ -64,6 +69,7 @@ export const campaigns: Campaign[] = [
   {
     id: "primeira-avaliacao",
     active: true,
+    status: "draft",
     badge: "Para novas clientes",
     title: "Sua primeira avaliação gratuita",
     description:

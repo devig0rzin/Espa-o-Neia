@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "@/components/ui/LegalLayout";
 import { Placeholder } from "@/components/ui/Placeholder";
-import { site } from "@/data/site";
+import { publicEmail, site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade",
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function PoliticaPage() {
+  const email = publicEmail();
   return (
     <LegalLayout title="Política de Privacidade" updatedAt="12 de julho de 2026">
       <Placeholder label="Adequação LGPD">
@@ -47,8 +48,8 @@ export default function PoliticaPage() {
       <h2>4. Seus direitos</h2>
       <p>
         Conforme a LGPD, você pode solicitar acesso, correção, exclusão ou informações sobre o uso dos seus
-        dados. Para exercer seus direitos, entre em contato pelo telefone {site.phoneDisplay} ou pelo e-mail{" "}
-        {site.email}.
+        dados. Para exercer seus direitos, entre em contato pelo telefone {site.phoneDisplay}
+        {email && <> ou pelo e-mail {email}</>}.
       </p>
 
       <h2>5. Segurança e retenção</h2>
@@ -59,7 +60,8 @@ export default function PoliticaPage() {
 
       <h2>6. Contato</h2>
       <p>
-        Dúvidas sobre esta Política? Fale conosco: {site.phoneDisplay} · {site.email}.
+        Dúvidas sobre esta Política? Fale conosco: {site.phoneDisplay}
+        {email && <> · {email}</>}.
       </p>
     </LegalLayout>
   );

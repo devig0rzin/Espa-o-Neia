@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "@/components/ui/LegalLayout";
 import { Placeholder } from "@/components/ui/Placeholder";
-import { site } from "@/data/site";
+import { publicEmail, site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Termos de Uso",
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default function TermosPage() {
+  const email = publicEmail();
   return (
     <LegalLayout title="Termos de Uso" updatedAt="12 de julho de 2026">
       <Placeholder label="Revisão jurídica">
@@ -49,7 +50,8 @@ export default function TermosPage() {
 
       <h2>5. Contato</h2>
       <p>
-        Dúvidas sobre estes Termos? Fale conosco: {site.phoneDisplay} · {site.email}.
+        Dúvidas sobre estes Termos? Fale conosco: {site.phoneDisplay}
+        {email && <> · {email}</>}.
       </p>
     </LegalLayout>
   );

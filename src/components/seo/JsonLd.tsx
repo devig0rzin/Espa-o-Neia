@@ -31,7 +31,8 @@ export function LocalBusinessJsonLd() {
         opens: h.opens,
         closes: h.closes,
       })),
-    sameAs: [site.social.instagram, site.social.facebook].filter(Boolean),
+    // Só perfis confirmados pela cliente entram no schema (rascunhos nunca).
+    sameAs: [site.social.instagram].filter((s) => s.status === "approved").map((s) => s.url),
   };
 
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;

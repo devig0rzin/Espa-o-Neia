@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { site, whatsappLink } from "@/data/site";
+import { publicInstagram, site, whatsappLink } from "@/data/site";
 import { mainNav } from "@/data/navigation";
 import { categories } from "@/data/categories";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const instagram = publicInstagram();
   return (
     <footer className="relative overflow-hidden border-t border-nude-escuro/40 bg-creme">
       <div
@@ -25,9 +26,9 @@ export function Footer() {
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-grafite-suave">
             Estética avançada, emagrecimento, beleza e bem-estar em Cotia, Granja Viana e região.
           </p>
-          {site.social.instagram && (
+          {instagram && (
             <a
-              href={site.social.instagram}
+              href={instagram.url}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-2 text-sm text-rose hover:text-rose-escuro"
@@ -36,7 +37,7 @@ export function Footer() {
                 <path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 2.2.28 2.9.55.7.28 1.3.65 1.9 1.25.6.6.97 1.2 1.25 1.9.27.7.49 1.7.55 2.9.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.28 2.2-.55 2.9-.28.7-.65 1.3-1.25 1.9-.6.6-1.2.97-1.9 1.25-.7.27-1.7.49-2.9.55-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-2.2-.28-2.9-.55-.7-.28-1.3-.65-1.9-1.25-.6-.6-.97-1.2-1.25-1.9-.27-.7-.49-1.7-.55-2.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.28-2.2.55-2.9.28-.7.65-1.3 1.25-1.9.6-.6 1.2-.97 1.9-1.25.7-.27 1.7-.49 2.9-.55C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.52 0-4.76.07-1 .05-1.6.21-2 .36-.5.2-.86.43-1.24.81-.38.38-.6.74-.81 1.24-.15.4-.3 1-.36 2C2.76 9.48 2.76 9.85 2.76 13s0 3.52.07 4.76c.05 1 .21 1.6.36 2 .2.5.43.86.81 1.24.38.38.74.6 1.24.81.4.15 1 .3 2 .36 1.24.06 1.6.07 4.76.07s3.52 0 4.76-.07c1-.05 1.6-.21 2-.36.5-.2.86-.43 1.24-.81.38-.38.6-.74.81-1.24.15-.4.3-1 .36-2 .06-1.24.07-1.6.07-4.76s0-3.52-.07-4.76c-.05-1-.21-1.6-.36-2-.2-.5-.43-.86-.81-1.24a3.4 3.4 0 0 0-1.24-.81c-.4-.15-1-.3-2-.36C15.52 4 15.15 4 12 4z" />
                 <path d="M12 7.4a4.6 4.6 0 1 0 0 9.2 4.6 4.6 0 0 0 0-9.2zm0 7.6a3 3 0 1 1 0-6 3 3 0 0 1 0 6zM18.4 6.4a1.08 1.08 0 1 1-2.16 0 1.08 1.08 0 0 1 2.16 0z" />
               </svg>
-              @espaconeia
+              {instagram.handle}
             </a>
           )}
         </div>

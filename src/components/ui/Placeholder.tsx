@@ -1,10 +1,12 @@
 import { cn } from "@/lib/utils";
+import { showDrafts } from "@/lib/drafts";
 
 /**
  * Marcação VISUAL de conteúdo pendente de validação pela cliente.
  * Usado para dados que não devem ser inventados (fotos, equipe,
  * certificados, depoimentos, preços). Fica evidente na tela para
  * facilitar a revisão antes da publicação — remova ao inserir o real.
+ * Só aparece onde rascunhos aparecem (dev e preview); em produção não renderiza nada.
  */
 export function Placeholder({
   children,
@@ -15,6 +17,7 @@ export function Placeholder({
   label?: string;
   className?: string;
 }) {
+  if (!showDrafts()) return null;
   return (
     <div
       className={cn(

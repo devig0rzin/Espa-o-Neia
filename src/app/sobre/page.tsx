@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { ImagePlaceholder } from "@/components/ui/Placeholder";
+import { ImagePlaceholder, Placeholder } from "@/components/ui/Placeholder";
 import { CtaBanner } from "@/components/ui/CtaBanner";
 import { team } from "@/data/team";
+import { visible } from "@/lib/drafts";
 
 export const metadata: Metadata = {
   title: "Sobre o Espaço Néia | Estética e Bem-estar em Cotia",
@@ -29,6 +30,7 @@ const valores = [
 ];
 
 export default function SobrePage() {
+  const equipe = visible(team);
   return (
     <>
       {/* HERO */}
@@ -88,27 +90,29 @@ export default function SobrePage() {
         </div>
       </Section>
 
-      {/* EQUIPE / RESPONSÁVEL TÉCNICO — nomes fictícios para o protótipo, ver src/data/team.ts */}
-      <Section>
-        <SectionHeading
-          eyebrow="Quem cuida de você"
-          title="Nossa equipe"
-          description="Nomes fictícios para esta apresentação — substitua por integrantes reais da equipe em src/data/team.ts antes da publicação."
-        />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {team.map((member) => (
-            <div
-              key={member.name}
-              className="rounded-3xl border border-nude-escuro/40 bg-marfim p-6 shadow-card"
-            >
-              <ImagePlaceholder label="Foto do profissional" ratio="aspect-square" className="mb-5" />
-              <p className="font-medium text-grafite">{member.name}</p>
-              <p className="text-sm text-rose">{member.role}</p>
-              <p className="mt-2 text-sm leading-relaxed text-grafite-suave">{member.bio}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
+      {/* EQUIPE — só aparece com integrantes aprovados (ou nos previews), ver src/data/team.ts */}
+      {equipe.length > 0 && (
+        <Section>
+          <SectionHeading eyebrow="Quem cuida de você" title="Nossa equipe" />
+          <Placeholder label="Equipe" className="mx-auto mt-8 max-w-2xl text-center">
+            Nomes fictícios, visíveis só no preview. Substitua por integrantes reais em{" "}
+            <code>src/data/team.ts</code> e marque <code>status: &quot;approved&quot;</code>.
+          </Placeholder>
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {equipe.map((member) => (
+              <div
+                key={member.name}
+                className="rounded-3xl border border-nude-escuro/40 bg-marfim p-6 shadow-card"
+              >
+                <ImagePlaceholder label="Foto do profissional" ratio="aspect-square" className="mb-5" />
+                <p className="font-medium text-grafite">{member.name}</p>
+                <p className="text-sm text-rose">{member.role}</p>
+                <p className="mt-2 text-sm leading-relaxed text-grafite-suave">{member.bio}</p>
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* AMBIENTE / ESTRUTURA */}
       <Section className="bg-creme">

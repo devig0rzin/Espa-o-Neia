@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { galleryReal } from "@/data/gallery";
+import { visible } from "@/lib/drafts";
+import { Placeholder } from "@/components/ui/Placeholder";
 
 /**
  * Galeria com as 3 fotos reais de procedimentos do Espaço Néia.
@@ -13,6 +15,9 @@ import { galleryReal } from "@/data/gallery";
  * src/data/gallery.ts.
  */
 export function RealResultsGallery() {
+  const items = visible(galleryReal);
+  if (items.length === 0) return null;
+
   return (
     <Section className="bg-creme">
       <SectionHeading
@@ -21,7 +26,7 @@ export function RealResultsGallery() {
         description="Alguns registros reais da nossa rotina de atendimento. Cada resultado é individual e depende da avaliação e do protocolo indicado para você."
       />
       <div className="mt-14 grid gap-6 md:grid-cols-3">
-        {galleryReal.map((item, i) => (
+        {items.map((item, i) => (
           <Reveal key={item.src} delay={i * 90}>
             <Link
               href={`/servicos/${item.categorySlug}`}
@@ -58,10 +63,14 @@ export function RealResultsGallery() {
         ))}
       </div>
       <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed text-grafite-suave">
-        Imagens reais de procedimentos realizados no Espaço Néia, utilizadas com a devida autorização.
         Resultados variam de pessoa para pessoa e dependem de avaliação individual — nenhuma imagem aqui
         representa promessa ou garantia de resultado.
       </p>
+      <Placeholder label="Antes e depois" className="mx-auto mt-6 max-w-2xl text-center">
+        Galeria visível só no preview. Antes de aprovar em <code>src/data/gallery.ts</code>, a responsável
+        técnica precisa confirmar o formato com o conselho profissional e o termo de uso de imagem de cada
+        paciente.
+      </Placeholder>
     </Section>
   );
 }

@@ -11,6 +11,9 @@
  * ============================================================
  */
 
+import type { ContentStatus } from "./types";
+import { showDrafts } from "@/lib/drafts";
+
 export const site = {
   name: "Espaço Néia",
   legalName: "Espaço Néia Beleza e Estética",
@@ -27,7 +30,8 @@ export const site = {
   // ----- CONTATO -----
   phoneDisplay: "(11) 99604-5920", // exibido na tela
   whatsappNumber: "5511996045920", // formato internacional, só dígitos (para links wa.me)
-  email: "contato@espaconeia.com.br", // fictício/exemplo para o protótipo — confirmar e-mail real com a cliente
+  // E-mail: "draft" enquanto não for confirmado pela cliente (só aparece nos previews).
+  email: { value: "contato@espaconeia.com.br", status: "draft" as ContentStatus },
 
   // ----- ENDEREÇO -----
   address: {
@@ -60,10 +64,14 @@ export const site = {
     { label: "Domingo", value: "Fechado", days: ["Sunday"], opens: null, closes: null },
   ],
 
-  // ----- REDES SOCIAIS (fictícias/exemplo para o protótipo — trocar pelos perfis reais) -----
+  // ----- REDES SOCIAIS -----
+  // Troque `status` para "approved" quando o perfil oficial for confirmado pela cliente.
   social: {
-    instagram: "https://instagram.com/espaconeia", // fictício/exemplo
-    facebook: "", // opcional
+    instagram: {
+      url: "https://instagram.com/espaconeia",
+      handle: "@espaconeia",
+      status: "draft" as ContentStatus,
+    },
   },
 
   // ----- MAPA (Google Maps embed) -----
@@ -77,4 +85,15 @@ export function whatsappLink(message?: string) {
     message ?? "Olá! Vim pelo site do Espaço Néia e gostaria de agendar minha avaliação gratuita. 💛",
   );
   return `https://wa.me/${site.whatsappNumber}?text=${text}`;
+}
+
+/** E-mail de contato, se puder aparecer no ambiente atual (null enquanto for rascunho em produção). */
+export function publicEmail(): string | null {
+  return site.email.status === "approved" || showDrafts() ? site.email.value : null;
+}
+
+/** Perfil do Instagram, se puder aparecer no ambiente atual. */
+export function publicInstagram() {
+  const ig = site.social.instagram;
+  return ig.status === "approved" || showDrafts() ? ig : null;
 }

@@ -15,6 +15,7 @@ import { categories } from "@/data/categories";
 import { activeCampaigns } from "@/data/campaigns";
 import { faq } from "@/data/faq";
 import { testimonials } from "@/data/testimonials";
+import { visible } from "@/lib/drafts";
 import { whatsappLink, site } from "@/data/site";
 
 const pilares = [
@@ -56,6 +57,9 @@ const etapas = [
 ];
 
 export default function HomePage() {
+  const depoimentos = visible(testimonials);
+  const perguntas = visible(faq);
+  const campanhas = visible(activeCampaigns());
   return (
     <>
       <Hero />
@@ -228,67 +232,73 @@ export default function HomePage() {
 
       <ExperienceSection />
 
-      {/* CAMPANHAS EM DESTAQUE */}
-      <Section>
-        <SectionHeading
-          eyebrow="Campanhas"
-          title="Condições especiais em destaque"
-          description="Protocolos e pacotes selecionados para você começar. Consulte disponibilidade e condições atualizadas."
-        />
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {activeCampaigns()
-            .slice(0, 3)
-            .map((c, i) => (
+      {/* CAMPANHAS EM DESTAQUE — some quando não há campanha vigente */}
+      {campanhas.length > 0 && (
+        <Section>
+          <SectionHeading
+            eyebrow="Campanhas"
+            title="Condições especiais em destaque"
+            description="Protocolos e pacotes selecionados para você começar. Consulte disponibilidade e condições atualizadas."
+          />
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {campanhas.slice(0, 3).map((c, i) => (
               <Reveal key={c.id} delay={i * 80}>
                 <CampaignCard campaign={c} />
               </Reveal>
             ))}
-        </div>
-      </Section>
+          </div>
+        </Section>
+      )}
 
       <RealResultsGallery />
 
-      {/* DEPOIMENTOS */}
-      <Section>
-        <SectionHeading eyebrow="Quem cuida da beleza aqui" title="Histórias de quem confia no Espaço Néia" />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <Reveal key={i} delay={i * 80}>
-              <figure className="flex h-full flex-col rounded-3xl bg-marfim p-7 shadow-card">
-                <div className="mb-3 text-aqua" aria-hidden>
-                  ★★★★★
-                </div>
-                <blockquote className="flex-1 text-sm leading-relaxed text-grafite-suave">
-                  “{t.text}”
-                </blockquote>
-                <figcaption className="mt-5 border-t border-nude-escuro/40 pt-4 text-sm">
-                  <span className="font-medium text-grafite">{t.name}</span>
-                  <span className="block text-grafite-suave">{t.city}</span>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
-        {testimonials.some((t) => t.pending) && (
-          <Placeholder label="Depoimentos" className="mt-8 mx-auto max-w-2xl text-center">
-            Estes depoimentos são <strong>placeholders</strong>. Substitua pelo texto real autorizado pelas
-            clientes em <code>src/data/testimonials.ts</code> e marque <code>pending: false</code>.
-          </Placeholder>
-        )}
-      </Section>
+      {/* DEPOIMENTOS — só aparece com depoimentos aprovados (ou nos previews) */}
+      {depoimentos.length > 0 && (
+        <Section>
+          <SectionHeading
+            eyebrow="Quem cuida da beleza aqui"
+            title="Histórias de quem confia no Espaço Néia"
+          />
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {depoimentos.map((t, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <figure className="flex h-full flex-col rounded-3xl bg-marfim p-7 shadow-card">
+                  <div className="mb-3 text-aqua" aria-hidden>
+                    ★★★★★
+                  </div>
+                  <blockquote className="flex-1 text-sm leading-relaxed text-grafite-suave">
+                    “{t.text}”
+                  </blockquote>
+                  <figcaption className="mt-5 border-t border-nude-escuro/40 pt-4 text-sm">
+                    <span className="font-medium text-grafite">{t.name}</span>
+                    <span className="block text-grafite-suave">{t.city}</span>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+          {depoimentos.some((t) => t.status === "draft") && (
+            <Placeholder label="Depoimentos" className="mx-auto mt-8 max-w-2xl text-center">
+              Depoimentos fictícios, visíveis só no preview. Substitua pelo texto real autorizado pelas
+              clientes em <code>src/data/testimonials.ts</code> e marque{" "}
+              <code>status: &quot;approved&quot;</code>.
+            </Placeholder>
+          )}
+        </Section>
+      )}
 
       {/* FAQ */}
       <Section container="narrow">
         <SectionHeading eyebrow="Dúvidas frequentes" title="Tudo o que você precisa saber antes de agendar" />
         <div className="mt-12">
-          <FaqAccordion items={faq.slice(0, 5)} />
+          <FaqAccordion items={perguntas.slice(0, 5)} />
         </div>
         <div className="mt-8 text-center">
           <Button href="/faq" variant="ghost">
             Ver todas as perguntas →
           </Button>
         </div>
-        <FaqJsonLd items={faq} />
+        <FaqJsonLd items={perguntas} />
       </Section>
 
       <CtaBanner />
