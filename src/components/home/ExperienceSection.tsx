@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/ui/Reveal";
-import { Section, SectionHeading } from "@/components/ui/Section";
+import { Section } from "@/components/ui/Section";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { Button } from "@/components/ui/Button";
 import { media } from "@/data/media";

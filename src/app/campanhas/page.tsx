@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Section, SectionHeading } from "@/components/ui/Section";
+import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { CampaignCard } from "@/components/ui/CampaignCard";
 import { CtaBanner } from "@/components/ui/CtaBanner";

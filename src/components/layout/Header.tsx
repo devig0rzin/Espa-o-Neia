@@ -21,8 +21,12 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Fecha o menu mobile ao trocar de página
-  useEffect(() => setOpen(false), [pathname]);
+  // Fecha o menu mobile ao trocar de página (ajuste de estado durante o render, sem effect)
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setOpen(false);
+  }
 
   return (
     <header
