@@ -21,16 +21,18 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Fecha o menu mobile ao trocar de página
-  useEffect(() => setOpen(false), [pathname]);
+  // Fecha o menu mobile ao trocar de página (ajuste de estado durante o render, sem effect)
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setOpen(false);
+  }
 
   return (
     <header
       className={cn(
         "sticky top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "border-b border-nude-escuro/40 bg-marfim/90 backdrop-blur-md"
-          : "bg-transparent",
+        scrolled ? "border-b border-nude-escuro/40 bg-marfim/90 backdrop-blur-md" : "bg-transparent",
       )}
     >
       <div className="container-wide flex items-center justify-between py-3">
@@ -82,9 +84,19 @@ export function Header() {
           aria-label={open ? "Fechar menu" : "Abrir menu"}
         >
           <div className="space-y-1.5">
-            <span className={cn("block h-0.5 w-6 bg-grafite transition-transform", open && "translate-y-2 rotate-45")} />
+            <span
+              className={cn(
+                "block h-0.5 w-6 bg-grafite transition-transform",
+                open && "translate-y-2 rotate-45",
+              )}
+            />
             <span className={cn("block h-0.5 w-6 bg-grafite transition-opacity", open && "opacity-0")} />
-            <span className={cn("block h-0.5 w-6 bg-grafite transition-transform", open && "-translate-y-2 -rotate-45")} />
+            <span
+              className={cn(
+                "block h-0.5 w-6 bg-grafite transition-transform",
+                open && "-translate-y-2 -rotate-45",
+              )}
+            />
           </div>
         </button>
       </div>
@@ -99,10 +111,7 @@ export function Header() {
           <ul className="container-wide flex flex-col py-4">
             {mainNav.map((item) => (
               <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="block py-3 text-base text-grafite-suave hover:text-rose"
-                >
+                <Link href={item.href} className="block py-3 text-base text-grafite-suave hover:text-rose">
                   {item.label}
                 </Link>
               </li>
@@ -112,9 +121,7 @@ export function Header() {
                 Avaliação gratuita
               </Button>
             </li>
-            <li className="pt-2 text-center text-sm text-grafite-suave">
-              ou ligue: {site.phoneDisplay}
-            </li>
+            <li className="pt-2 text-center text-sm text-grafite-suave">ou ligue: {site.phoneDisplay}</li>
           </ul>
         </nav>
       )}

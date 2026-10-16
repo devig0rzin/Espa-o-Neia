@@ -10,9 +10,18 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-marfim via-creme to-marfim">
       {/* Elementos decorativos nas cores da marca (água-marinha + rosé) */}
-      <div aria-hidden className="pointer-events-none absolute -right-32 top-10 h-96 w-96 rounded-full bg-aqua/25 blur-3xl" />
-      <div aria-hidden className="pointer-events-none absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-rose/15 blur-3xl" />
-      <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-aqua-claro/40 blur-2xl" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-32 top-10 h-96 w-96 rounded-full bg-aqua/25 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-rose/15 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-aqua-claro/40 blur-2xl"
+      />
 
       <div className="container-wide grid items-center gap-12 py-16 md:py-20 lg:grid-cols-2 lg:py-24">
         <div className="animate-fade-rise">
@@ -22,9 +31,7 @@ export function Hero() {
           <h1 className="font-display text-4xl leading-[1.1] text-grafite sm:text-5xl lg:text-6xl">
             Sua beleza cuidada com <span className="text-rose">tecnologia</span>, acolhimento e resultado.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-grafite-suave">
-            {site.manifesto}
-          </p>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-grafite-suave">{site.manifesto}</p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button href={whatsappLink()} external size="lg">

@@ -12,21 +12,35 @@ import { Button } from "@/components/ui/Button";
 import { Placeholder } from "@/components/ui/Placeholder";
 import { FaqJsonLd } from "@/components/seo/JsonLd";
 import { categories } from "@/data/categories";
-import { activeCampaigns } from "@/data/campaigns";
+import { campaigns } from "@/data/campaigns";
+import { liveCampaigns } from "@/lib/campaigns";
 import { faq } from "@/data/faq";
 import { testimonials } from "@/data/testimonials";
+import { visible } from "@/lib/drafts";
 import { whatsappLink, site } from "@/data/site";
 
 const pilares = [
-  { title: "Estética avançada", text: "Protocolos faciais e corporais com tecnologia aplicada conforme avaliação." },
-  { title: "Emagrecimento & modelagem", text: "Planos personalizados para o contorno corporal e o bem-estar." },
+  {
+    title: "Estética avançada",
+    text: "Protocolos faciais e corporais com tecnologia aplicada conforme avaliação.",
+  },
+  {
+    title: "Emagrecimento & modelagem",
+    text: "Planos personalizados para o contorno corporal e o bem-estar.",
+  },
   { title: "Beleza & cuidados", text: "Sobrancelhas, cílios e cuidados de beleza com padrão de clínica." },
   { title: "Bem-estar", text: "Momentos de autocuidado em um ambiente clean e acolhedor." },
 ];
 
 const diferenciais = [
-  { title: "Avaliação individual", text: "Nada de protocolos genéricos. Tudo começa entendendo você e o seu objetivo." },
-  { title: "Tecnologia e técnica", text: "Equipamentos e técnicas aplicados com critério e responsabilidade." },
+  {
+    title: "Avaliação individual",
+    text: "Nada de protocolos genéricos. Tudo começa entendendo você e o seu objetivo.",
+  },
+  {
+    title: "Tecnologia e técnica",
+    text: "Equipamentos e técnicas aplicados com critério e responsabilidade.",
+  },
   { title: "Acolhimento real", text: "Atendimento discreto, humano e atencioso do início ao fim." },
   { title: "Transparência", text: "Comunicação clara sobre expectativas, frequência e cuidados." },
   { title: "Ambiente premium", text: "Um espaço pensado para o seu conforto e bem-estar." },
@@ -36,10 +50,20 @@ const diferenciais = [
 const etapas = [
   { n: "01", title: "Avaliação", text: "Conversamos sobre seus objetivos, histórico e expectativas." },
   { n: "02", title: "Plano personalizado", text: "Desenhamos o protocolo ideal para o seu momento." },
-  { n: "03", title: "Acompanhamento", text: "Cuidamos de você a cada sessão, com ajustes quando necessário." },
+  {
+    n: "03",
+    title: "Acompanhamento",
+    text: "Cuidamos de você a cada sessão, com ajustes quando necessário.",
+  },
 ];
 
+// Revalida a cada 1h: campanhas vencidas saem do ar sem novo deploy (no máximo ~1h após o fim do dia).
+export const revalidate = 3600;
+
 export default function HomePage() {
+  const depoimentos = visible(testimonials);
+  const perguntas = visible(faq);
+  const campanhas = liveCampaigns(campaigns);
   return (
     <>
       <Hero />
@@ -47,7 +71,9 @@ export default function HomePage() {
       {/* AUTORIDADE & ACOLHIMENTO */}
       <Section container="narrow" className="text-center">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">Bem-vinda ao Espaço Néia</p>
+          <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">
+            Bem-vinda ao Espaço Néia
+          </p>
           <p className="mt-6 font-display text-2xl leading-relaxed text-grafite md:text-3xl">
             {site.manifesto}
           </p>
@@ -92,7 +118,9 @@ export default function HomePage() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <Button href="/servicos" variant="secondary" size="lg">Ver todos os tratamentos</Button>
+          <Button href="/servicos" variant="secondary" size="lg">
+            Ver todos os tratamentos
+          </Button>
         </div>
       </Section>
 
@@ -131,7 +159,9 @@ export default function HomePage() {
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">Tecnologia &amp; personalização</p>
+            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">
+              Tecnologia &amp; personalização
+            </p>
             <h2 className="mt-3 font-display text-3xl leading-tight text-grafite md:text-4xl">
               O seu protocolo, desenhado passo a passo
             </h2>
@@ -151,7 +181,9 @@ export default function HomePage() {
               ))}
             </ol>
             <div className="mt-8">
-              <Button href={whatsappLink()} external>Começar pela avaliação</Button>
+              <Button href={whatsappLink()} external>
+                Começar pela avaliação
+              </Button>
             </div>
           </Reveal>
         </div>
@@ -166,19 +198,25 @@ export default function HomePage() {
               Experiências de cuidado pensadas nos mínimos detalhes
             </h2>
             <p className="mt-4 leading-relaxed text-grafite-suave">
-              Nossos protocolos combinam técnicas, tecnologia e um roteiro de atendimento acolhedor,
-              para que cada visita seja um momento só seu. Personalização é o que nos define.
+              Nossos protocolos combinam técnicas, tecnologia e um roteiro de atendimento acolhedor, para que
+              cada visita seja um momento só seu. Personalização é o que nos define.
             </p>
             <ul className="mt-6 space-y-3 text-sm text-grafite">
-              {["Roteiro de cuidado individualizado", "Ambiente reservado e confortável", "Orientação para prolongar os resultados em casa"].map((t) => (
+              {[
+                "Roteiro de cuidado individualizado",
+                "Ambiente reservado e confortável",
+                "Orientação para prolongar os resultados em casa",
+              ].map((t) => (
                 <li key={t} className="flex items-center gap-3">
                   <span className="h-1.5 w-1.5 rounded-full bg-rose" aria-hidden /> {t}
                 </li>
               ))}
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/campanhas">Ver protocolos em destaque</Button>
-              <Button href={whatsappLink()} external variant="secondary">Falar no WhatsApp</Button>
+              {campanhas.length > 0 && <Button href="/campanhas">Ver protocolos em destaque</Button>}
+              <Button href={whatsappLink()} external variant="secondary">
+                Falar no WhatsApp
+              </Button>
             </div>
           </Reveal>
           <Reveal delay={120}>
@@ -198,59 +236,73 @@ export default function HomePage() {
 
       <ExperienceSection />
 
-      {/* CAMPANHAS EM DESTAQUE */}
-      <Section>
-        <SectionHeading
-          eyebrow="Campanhas"
-          title="Condições especiais em destaque"
-          description="Protocolos e pacotes selecionados para você começar. Consulte disponibilidade e condições atualizadas."
-        />
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {activeCampaigns().slice(0, 3).map((c, i) => (
-            <Reveal key={c.id} delay={i * 80}>
-              <CampaignCard campaign={c} />
-            </Reveal>
-          ))}
-        </div>
-      </Section>
+      {/* CAMPANHAS EM DESTAQUE — some quando não há campanha vigente */}
+      {campanhas.length > 0 && (
+        <Section>
+          <SectionHeading
+            eyebrow="Campanhas"
+            title="Condições especiais em destaque"
+            description="Protocolos e pacotes selecionados para você começar. Consulte disponibilidade e condições atualizadas."
+          />
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {campanhas.slice(0, 3).map((c, i) => (
+              <Reveal key={c.id} delay={i * 80}>
+                <CampaignCard campaign={c} />
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+      )}
 
       <RealResultsGallery />
 
-      {/* DEPOIMENTOS */}
-      <Section>
-        <SectionHeading eyebrow="Quem cuida da beleza aqui" title="Histórias de quem confia no Espaço Néia" />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <Reveal key={i} delay={i * 80}>
-              <figure className="flex h-full flex-col rounded-3xl bg-marfim p-7 shadow-card">
-                <div className="mb-3 text-aqua" aria-hidden>★★★★★</div>
-                <blockquote className="flex-1 text-sm leading-relaxed text-grafite-suave">“{t.text}”</blockquote>
-                <figcaption className="mt-5 border-t border-nude-escuro/40 pt-4 text-sm">
-                  <span className="font-medium text-grafite">{t.name}</span>
-                  <span className="block text-grafite-suave">{t.city}</span>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
-        {testimonials.some((t) => t.pending) && (
-          <Placeholder label="Depoimentos" className="mt-8 mx-auto max-w-2xl text-center">
-            Estes depoimentos são <strong>placeholders</strong>. Substitua pelo texto real autorizado pelas clientes
-            em <code>src/data/testimonials.ts</code> e marque <code>pending: false</code>.
-          </Placeholder>
-        )}
-      </Section>
+      {/* DEPOIMENTOS — só aparece com depoimentos aprovados (ou nos previews) */}
+      {depoimentos.length > 0 && (
+        <Section>
+          <SectionHeading
+            eyebrow="Quem cuida da beleza aqui"
+            title="Histórias de quem confia no Espaço Néia"
+          />
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {depoimentos.map((t, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <figure className="flex h-full flex-col rounded-3xl bg-marfim p-7 shadow-card">
+                  <div className="mb-3 text-aqua" aria-hidden>
+                    ★★★★★
+                  </div>
+                  <blockquote className="flex-1 text-sm leading-relaxed text-grafite-suave">
+                    “{t.text}”
+                  </blockquote>
+                  <figcaption className="mt-5 border-t border-nude-escuro/40 pt-4 text-sm">
+                    <span className="font-medium text-grafite">{t.name}</span>
+                    <span className="block text-grafite-suave">{t.city}</span>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+          {depoimentos.some((t) => t.status === "draft") && (
+            <Placeholder label="Depoimentos" className="mx-auto mt-8 max-w-2xl text-center">
+              Depoimentos fictícios, visíveis só no preview. Substitua pelo texto real autorizado pelas
+              clientes em <code>src/data/testimonials.ts</code> e marque{" "}
+              <code>status: &quot;approved&quot;</code>.
+            </Placeholder>
+          )}
+        </Section>
+      )}
 
       {/* FAQ */}
       <Section container="narrow">
         <SectionHeading eyebrow="Dúvidas frequentes" title="Tudo o que você precisa saber antes de agendar" />
         <div className="mt-12">
-          <FaqAccordion items={faq.slice(0, 5)} />
+          <FaqAccordion items={perguntas.slice(0, 5)} />
         </div>
         <div className="mt-8 text-center">
-          <Button href="/faq" variant="ghost">Ver todas as perguntas →</Button>
+          <Button href="/faq" variant="ghost">
+            Ver todas as perguntas →
+          </Button>
         </div>
-        <FaqJsonLd items={faq} />
+        <FaqJsonLd items={perguntas} />
       </Section>
 
       <CtaBanner />

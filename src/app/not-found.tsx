@@ -11,7 +11,9 @@ export default function NotFound() {
       </p>
       <div className="mt-8 flex justify-center gap-3">
         <Button href="/">Voltar ao início</Button>
-        <Button href="/servicos" variant="secondary">Ver tratamentos</Button>
+        <Button href="/servicos" variant="secondary">
+          Ver tratamentos
+        </Button>
       </div>
     </Section>
   );

@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/ui/Reveal";
-import { Section, SectionHeading } from "@/components/ui/Section";
+import { Section } from "@/components/ui/Section";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { Button } from "@/components/ui/Button";
 import { media } from "@/data/media";
@@ -25,7 +25,9 @@ export function ExperienceSection() {
           />
         </Reveal>
         <Reveal delay={120}>
-          <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua-escuro">Ambiente &amp; experiência</p>
+          <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua-escuro">
+            Ambiente &amp; experiência
+          </p>
           <h2 className="mt-3 font-display text-3xl leading-tight text-grafite md:text-4xl">
             Um espaço para você desacelerar
           </h2>
@@ -42,7 +44,9 @@ export function ExperienceSection() {
             ))}
           </ul>
           <div className="mt-8">
-            <Button href={whatsappLink()} external>Conhecer o espaço</Button>
+            <Button href={whatsappLink()} external>
+              Conhecer o espaço
+            </Button>
           </div>
         </Reveal>
       </div>

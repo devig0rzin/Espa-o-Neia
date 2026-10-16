@@ -9,8 +9,7 @@ export function LocalBusinessJsonLd() {
     "@context": "https://schema.org",
     "@type": ["HealthAndBeautyBusiness", "BeautySalon"],
     name: site.legalName,
-    description:
-      "Clínica de estética avançada, emagrecimento, beleza e bem-estar em Cotia e Granja Viana.",
+    description: "Clínica de estética avançada, emagrecimento, beleza e bem-estar em Cotia e Granja Viana.",
     url: site.url,
     telephone: site.phoneDisplay,
     image: `${site.url}/images/og.jpg`,
@@ -32,15 +31,11 @@ export function LocalBusinessJsonLd() {
         opens: h.opens,
         closes: h.closes,
       })),
-    sameAs: [site.social.instagram, site.social.facebook].filter(Boolean),
+    // Só perfis confirmados pela cliente entram no schema (rascunhos nunca).
+    sameAs: [site.social.instagram].filter((s) => s.status === "approved").map((s) => s.url),
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
-  );
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }
 
 /** Schema FAQPage — usa a lista de perguntas fornecida. */
@@ -54,10 +49,5 @@ export function FaqJsonLd({ items }: { items: { question: string; answer: string
       acceptedAnswer: { "@type": "Answer", text: i.answer },
     })),
   };
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
-  );
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }

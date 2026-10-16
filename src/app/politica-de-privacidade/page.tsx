@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { LegalLayout } from "@/components/ui/LegalLayout";
 import { Placeholder } from "@/components/ui/Placeholder";
 import { site } from "@/data/site";
+import { publicEmail } from "@/lib/public-contact";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade",
@@ -11,11 +12,12 @@ export const metadata: Metadata = {
 };
 
 export default function PoliticaPage() {
+  const email = publicEmail();
   return (
     <LegalLayout title="Política de Privacidade" updatedAt="12 de julho de 2026">
       <Placeholder label="Adequação LGPD">
-        Este documento é um <strong>modelo inicial</strong> e não substitui orientação jurídica. Antes de publicar,
-        recomenda-se a revisão por profissional responsável para adequação plena à{" "}
+        Este documento é um <strong>modelo inicial</strong> e não substitui orientação jurídica. Antes de
+        publicar, recomenda-se a revisão por profissional responsável para adequação plena à{" "}
         <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong> e ao negócio real.
       </Placeholder>
 
@@ -26,8 +28,8 @@ export default function PoliticaPage() {
 
       <h2>1. Dados que coletamos</h2>
       <p>
-        Coletamos apenas os dados que você nos fornece voluntariamente, por exemplo ao preencher o formulário de
-        contato ou nos chamar pelo WhatsApp: nome, telefone, e a mensagem/assunto de interesse.
+        Coletamos apenas os dados que você nos fornece voluntariamente, por exemplo ao preencher o formulário
+        de contato ou nos chamar pelo WhatsApp: nome, telefone, e a mensagem/assunto de interesse.
       </p>
 
       <h2>2. Como usamos os seus dados</h2>
@@ -40,14 +42,15 @@ export default function PoliticaPage() {
 
       <h2>3. Base legal e consentimento</h2>
       <p>
-        O tratamento dos seus dados ocorre mediante o seu consentimento, manifestado ao enviar o formulário, e/ou
-        para atender à sua solicitação. Você pode retirar o consentimento a qualquer momento.
+        O tratamento dos seus dados ocorre mediante o seu consentimento, manifestado ao enviar o formulário,
+        e/ou para atender à sua solicitação. Você pode retirar o consentimento a qualquer momento.
       </p>
 
       <h2>4. Seus direitos</h2>
       <p>
-        Conforme a LGPD, você pode solicitar acesso, correção, exclusão ou informações sobre o uso dos seus dados.
-        Para exercer seus direitos, entre em contato pelo telefone {site.phoneDisplay} ou pelo e-mail {site.email}.
+        Conforme a LGPD, você pode solicitar acesso, correção, exclusão ou informações sobre o uso dos seus
+        dados. Para exercer seus direitos, entre em contato pelo telefone {site.phoneDisplay}
+        {email && <> ou pelo e-mail {email}</>}.
       </p>
 
       <h2>5. Segurança e retenção</h2>
@@ -58,7 +61,8 @@ export default function PoliticaPage() {
 
       <h2>6. Contato</h2>
       <p>
-        Dúvidas sobre esta Política? Fale conosco: {site.phoneDisplay} · {site.email}.
+        Dúvidas sobre esta Política? Fale conosco: {site.phoneDisplay}
+        {email && <> · {email}</>}.
       </p>
     </LegalLayout>
   );

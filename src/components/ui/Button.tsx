@@ -8,10 +8,8 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-wide transition-all duration-300 focus-visible:ring-2 focus-visible:ring-rose focus-visible:ring-offset-2";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-rose text-marfim shadow-suave hover:bg-rose-escuro hover:-translate-y-0.5",
-  secondary:
-    "border border-grafite/20 bg-transparent text-grafite hover:border-rose hover:text-rose",
+  primary: "bg-rose text-marfim shadow-suave hover:bg-rose-escuro hover:-translate-y-0.5",
+  secondary: "border border-grafite/20 bg-transparent text-grafite hover:border-rose hover:text-rose",
   ghost: "text-grafite hover:text-rose",
   aqua: "bg-aqua text-petrol shadow-suave hover:bg-aqua-claro hover:-translate-y-0.5",
   petrol: "bg-petrol text-marfim shadow-suave hover:bg-petrol-suave hover:-translate-y-0.5",

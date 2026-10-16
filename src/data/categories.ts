@@ -54,12 +54,33 @@ export const categories: Category[] = [
       "Sentir-se mais confortável e confiante com o próprio corpo",
     ],
     procedures: [
-      { name: "Criolipólise", description: "Tecnologia que atua sobre a gordura localizada em áreas específicas, conforme avaliação individual." },
-      { name: "Lipocavitação", description: "Técnica estética voltada à redução de medidas e ao contorno corporal." },
-      { name: "Ultracavitação", description: "Tecnologia aplicada ao contorno corporal, indicada conforme avaliação." },
-      { name: "Ultrassom estético", description: "Recurso tecnológico utilizado em protocolos de modelagem corporal." },
-      { name: "Enzimas", description: "Aplicação injetável utilizada em protocolos de contorno corporal.", regulated: true },
-      { name: "Lipo de papada", description: "Procedimento voltado à região do queixo e papada, mediante avaliação individual.", regulated: true },
+      {
+        name: "Criolipólise",
+        description:
+          "Tecnologia que atua sobre a gordura localizada em áreas específicas, conforme avaliação individual.",
+      },
+      {
+        name: "Lipocavitação",
+        description: "Técnica estética voltada à redução de medidas e ao contorno corporal.",
+      },
+      {
+        name: "Ultracavitação",
+        description: "Tecnologia aplicada ao contorno corporal, indicada conforme avaliação.",
+      },
+      {
+        name: "Ultrassom estético",
+        description: "Recurso tecnológico utilizado em protocolos de modelagem corporal.",
+      },
+      {
+        name: "Enzimas",
+        description: "Aplicação injetável utilizada em protocolos de contorno corporal.",
+        regulated: true,
+      },
+      {
+        name: "Lipo de papada",
+        description: "Procedimento voltado à região do queixo e papada, mediante avaliação individual.",
+        regulated: true,
+      },
     ],
     differentials: [
       "Protocolos personalizados, nunca padronizados",
@@ -67,8 +88,16 @@ export const categories: Category[] = [
       "Tecnologia estética aliada à técnica humana",
     ],
     faq: [
-      { question: "Preciso de avaliação antes de começar?", answer: "Sim. Toda jornada começa por uma avaliação individual, para que o protocolo seja desenhado de acordo com o seu objetivo e o seu momento." },
-      { question: "Em quantas sessões vejo diferença?", answer: "A frequência e a quantidade de sessões variam de pessoa para pessoa. Na avaliação explicamos, com transparência, o que esperar do seu protocolo." },
+      {
+        question: "Preciso de avaliação antes de começar?",
+        answer:
+          "Sim. Toda jornada começa por uma avaliação individual, para que o protocolo seja desenhado de acordo com o seu objetivo e o seu momento.",
+      },
+      {
+        question: "Em quantas sessões vejo diferença?",
+        answer:
+          "A frequência e a quantidade de sessões variam de pessoa para pessoa. Na avaliação explicamos, com transparência, o que esperar do seu protocolo.",
+      },
     ],
     regulatoryNote:
       "Enzimas e lipo de papada envolvem aplicação injetável e possuem indicação e execução restritas a profissional habilitado, conforme avaliação individual e regulamentação vigente.",
@@ -90,10 +119,26 @@ export const categories: Category[] = [
       "Cuidar da pele de forma preventiva e contínua",
     ],
     procedures: [
-      { name: "Limpeza de pele profunda", description: "Higienização e cuidado da pele com protocolo adequado ao seu tipo de pele." },
-      { name: "Micropigmentação", description: "Técnica para desenho e preenchimento visual de sobrancelhas, conforme avaliação." },
-      { name: "Botox", description: "Aplicação injetável para suavização de linhas de expressão, mediante avaliação individual.", regulated: true },
-      { name: "Preenchimentos", description: "Procedimento injetável para harmonização de contornos faciais, mediante avaliação individual.", regulated: true },
+      {
+        name: "Limpeza de pele profunda",
+        description: "Higienização e cuidado da pele com protocolo adequado ao seu tipo de pele.",
+      },
+      {
+        name: "Micropigmentação",
+        description: "Técnica para desenho e preenchimento visual de sobrancelhas, conforme avaliação.",
+      },
+      {
+        name: "Botox",
+        description:
+          "Aplicação injetável para suavização de linhas de expressão, mediante avaliação individual.",
+        regulated: true,
+      },
+      {
+        name: "Preenchimentos",
+        description:
+          "Procedimento injetável para harmonização de contornos faciais, mediante avaliação individual.",
+        regulated: true,
+      },
     ],
     differentials: [
       "Protocolos adaptados ao seu tipo de pele",
@@ -101,8 +146,16 @@ export const categories: Category[] = [
       "Avaliação individual antes de qualquer procedimento",
     ],
     faq: [
-      { question: "Qualquer pele pode fazer limpeza de pele?", answer: "Cada pele é avaliada individualmente. Alguns protocolos têm indicação específica — por isso a avaliação é sempre o primeiro passo." },
-      { question: "Botox e preenchimento têm indicação profissional?", answer: "Sim. São procedimentos injetáveis com indicação e execução restritas a profissional habilitado, sempre precedidos de avaliação individual." },
+      {
+        question: "Qualquer pele pode fazer limpeza de pele?",
+        answer:
+          "Cada pele é avaliada individualmente. Alguns protocolos têm indicação específica — por isso a avaliação é sempre o primeiro passo.",
+      },
+      {
+        question: "Botox e preenchimento têm indicação profissional?",
+        answer:
+          "Sim. São procedimentos injetáveis com indicação e execução restritas a profissional habilitado, sempre precedidos de avaliação individual.",
+      },
     ],
     regulatoryNote:
       "Botox e preenchimentos são procedimentos injetáveis com indicação e execução restritas a profissional habilitado, conforme avaliação individual e regulamentação vigente.",
@@ -124,11 +177,25 @@ export const categories: Category[] = [
       "Cuidar da circulação e do aspecto de vasinhos",
     ],
     procedures: [
-      { name: "Drenagem linfática", description: "Técnica manual voltada ao conforto e à sensação de leveza." },
+      {
+        name: "Drenagem linfática",
+        description: "Técnica manual voltada ao conforto e à sensação de leveza.",
+      },
       { name: "Massagens relaxantes", description: "Cuidado para o bem-estar físico e mental." },
-      { name: "Massagens pré e pós-cirúrgicas", description: "Protocolo de apoio conforme orientação e avaliação individual." },
-      { name: "Ozonioterapia", description: "Procedimento estético aplicado conforme avaliação e indicação profissional.", regulated: true },
-      { name: "Aplicação de vasinhos", description: "Procedimento voltado ao aspecto de vasinhos, mediante avaliação individual.", regulated: true },
+      {
+        name: "Massagens pré e pós-cirúrgicas",
+        description: "Protocolo de apoio conforme orientação e avaliação individual.",
+      },
+      {
+        name: "Ozonioterapia",
+        description: "Procedimento estético aplicado conforme avaliação e indicação profissional.",
+        regulated: true,
+      },
+      {
+        name: "Aplicação de vasinhos",
+        description: "Procedimento voltado ao aspecto de vasinhos, mediante avaliação individual.",
+        regulated: true,
+      },
     ],
     differentials: [
       "Ambiente relaxante e acolhedor",
@@ -136,8 +203,16 @@ export const categories: Category[] = [
       "Atenção aos detalhes em cada sessão",
     ],
     faq: [
-      { question: "Consigo combinar com outros tratamentos?", answer: "Sim. Muitos cuidados podem ser combinados. Na avaliação montamos o protocolo ideal para o seu objetivo." },
-      { question: "Ozonioterapia e aplicação de vasinhos têm indicação profissional?", answer: "Sim, são procedimentos com indicação e execução restritas a profissional habilitado, sempre após avaliação individual." },
+      {
+        question: "Consigo combinar com outros tratamentos?",
+        answer:
+          "Sim. Muitos cuidados podem ser combinados. Na avaliação montamos o protocolo ideal para o seu objetivo.",
+      },
+      {
+        question: "Ozonioterapia e aplicação de vasinhos têm indicação profissional?",
+        answer:
+          "Sim, são procedimentos com indicação e execução restritas a profissional habilitado, sempre após avaliação individual.",
+      },
     ],
     regulatoryNote:
       "Ozonioterapia e aplicação de vasinhos possuem indicação e execução restritas a profissional habilitado, conforme avaliação individual e regulamentação vigente.",
@@ -171,7 +246,11 @@ export const categories: Category[] = [
       "Ambiente elegante e reservado",
     ],
     faq: [
-      { question: "Preciso agendar com antecedência?", answer: "Recomendamos o agendamento para garantir o melhor horário para você. Fale conosco pelo WhatsApp." },
+      {
+        question: "Preciso agendar com antecedência?",
+        answer:
+          "Recomendamos o agendamento para garantir o melhor horário para você. Fale conosco pelo WhatsApp.",
+      },
     ],
   },
 ];

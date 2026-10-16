@@ -1,11 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import type { FaqItem } from "@/data/faq";
 import { cn } from "@/lib/utils";
 
 /** Accordion acessível de FAQ (navegável por teclado). */
-export function FaqAccordion({ items }: { items: FaqItem[] }) {
+export function FaqAccordion({ items }: { items: { question: string; answer: string }[] }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (

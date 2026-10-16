@@ -5,6 +5,7 @@ import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import { CtaBanner } from "@/components/ui/CtaBanner";
 import { FaqJsonLd } from "@/components/seo/JsonLd";
 import { faq } from "@/data/faq";
+import { visible } from "@/lib/drafts";
 
 export const metadata: Metadata = {
   title: "Perguntas Frequentes | Espaço Néia Cotia",
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function FaqPage() {
+  const perguntas = visible(faq);
   return (
     <>
       <Section className="bg-gradient-to-b from-creme to-marfim pb-8">
@@ -33,9 +35,9 @@ export default function FaqPage() {
       <Section container="narrow" className="pt-4">
         <SectionHeading align="left" eyebrow="Tudo o que você precisa saber" title="Perguntas e respostas" />
         <div className="mt-10">
-          <FaqAccordion items={faq} />
+          <FaqAccordion items={perguntas} />
         </div>
-        <FaqJsonLd items={faq} />
+        <FaqJsonLd items={perguntas} />
       </Section>
 
       <CtaBanner />

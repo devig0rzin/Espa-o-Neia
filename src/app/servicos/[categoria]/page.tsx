@@ -32,11 +32,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function CategoriaPage({
-  params,
-}: {
-  params: Promise<{ categoria: string }>;
-}) {
+export default async function CategoriaPage({ params }: { params: Promise<{ categoria: string }> }) {
   const { categoria } = await params;
   const cat = getCategory(categoria);
   if (!cat) notFound();
@@ -50,16 +46,26 @@ export default async function CategoriaPage({
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
             <nav aria-label="Trilha de navegação" className="mb-5 text-xs text-grafite-suave">
-              <Link href="/servicos" className="hover:text-rose">Tratamentos</Link>
-              <span className="mx-2" aria-hidden>/</span>
+              <Link href="/servicos" className="hover:text-rose">
+                Tratamentos
+              </Link>
+              <span className="mx-2" aria-hidden>
+                /
+              </span>
               <span className="text-grafite">{cat.name}</span>
             </nav>
             <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">{cat.eyebrow}</p>
-            <h1 className="mt-3 font-display text-4xl leading-tight text-grafite md:text-5xl">{cat.heroTitle}</h1>
+            <h1 className="mt-3 font-display text-4xl leading-tight text-grafite md:text-5xl">
+              {cat.heroTitle}
+            </h1>
             <p className="mt-5 text-lg leading-relaxed text-grafite-suave">{cat.heroSubtitle}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href={whatsappLink(waMsg)} external size="lg">Avaliação gratuita</Button>
-              <Button href={whatsappLink(waMsg)} external variant="secondary" size="lg">Falar no WhatsApp</Button>
+              <Button href={whatsappLink(waMsg)} external size="lg">
+                Avaliação gratuita
+              </Button>
+              <Button href={whatsappLink(waMsg)} external variant="secondary" size="lg">
+                Falar no WhatsApp
+              </Button>
             </div>
           </Reveal>
           <Reveal delay={120}>
@@ -134,7 +140,10 @@ export default async function CategoriaPage({
         <SectionHeading eyebrow="Diferenciais" title="Por que cuidar disso no Espaço Néia" />
         <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-3">
           {cat.differentials.map((d) => (
-            <div key={d} className="rounded-3xl border border-nude-escuro/40 bg-marfim p-7 text-center shadow-card">
+            <div
+              key={d}
+              className="rounded-3xl border border-nude-escuro/40 bg-marfim p-7 text-center shadow-card"
+            >
               <div className="mx-auto mb-4 h-10 w-10 rounded-full border border-aqua/50" aria-hidden />
               <p className="text-sm leading-relaxed text-grafite">{d}</p>
             </div>

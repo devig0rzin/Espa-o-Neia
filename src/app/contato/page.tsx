@@ -21,7 +21,9 @@ export default function ContatoPage() {
       <Section className="bg-gradient-to-b from-creme to-marfim pb-10">
         <div className="container-narrow text-center">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">Fale com o Espaço Néia</p>
+            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">
+              Fale com o Espaço Néia
+            </p>
             <h1 className="mt-4 font-display text-4xl leading-tight text-grafite md:text-5xl">
               Será um prazer cuidar de você
             </h1>
@@ -44,8 +46,10 @@ export default function ContatoPage() {
                 <div>
                   <h3 className="font-semibold uppercase tracking-wider text-aqua">Endereço</h3>
                   <address className="mt-2 not-italic leading-relaxed text-grafite-suave">
-                    {site.address.street}<br />
-                    {site.address.district}<br />
+                    {site.address.street}
+                    <br />
+                    {site.address.district}
+                    <br />
                     {site.address.city} — {site.address.state}, {site.address.zip}
                   </address>
                 </div>
@@ -53,7 +57,9 @@ export default function ContatoPage() {
                 <div>
                   <h3 className="font-semibold uppercase tracking-wider text-aqua">Telefone / WhatsApp</h3>
                   <p className="mt-2 text-grafite-suave">
-                    <a href={`tel:+${site.whatsappNumber}`} className="hover:text-rose">{site.phoneDisplay}</a>
+                    <a href={`tel:+${site.whatsappNumber}`} className="hover:text-rose">
+                      {site.phoneDisplay}
+                    </a>
                   </p>
                 </div>
 
@@ -61,7 +67,10 @@ export default function ContatoPage() {
                   <h3 className="font-semibold uppercase tracking-wider text-aqua">Horários</h3>
                   <ul className="mt-2 space-y-1 text-grafite-suave">
                     {site.hours.map((h) => (
-                      <li key={h.label} className="flex justify-between gap-6 border-b border-nude-escuro/30 py-1">
+                      <li
+                        key={h.label}
+                        className="flex justify-between gap-6 border-b border-nude-escuro/30 py-1"
+                      >
                         <span>{h.label}</span>
                         <span>{h.value}</span>
                       </li>
@@ -72,24 +81,28 @@ export default function ContatoPage() {
                 <div>
                   <h3 className="font-semibold uppercase tracking-wider text-aqua">Como chegar</h3>
                   <p className="mt-2 leading-relaxed text-grafite-suave">
-                    Estamos na Vila São Francisco de Assis, em Cotia, com fácil acesso para quem vem de
-                    Granja Viana e região. Recomendamos chegar com alguns minutos de antecedência.
-                    Em caso de dúvida sobre a chegada, chame-nos no WhatsApp.
+                    Estamos na Vila São Francisco de Assis, em Cotia, com fácil acesso para quem vem de Granja
+                    Viana e região. Recomendamos chegar com alguns minutos de antecedência. Em caso de dúvida
+                    sobre a chegada, chame-nos no WhatsApp.
                   </p>
                 </div>
               </div>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button href={whatsappLink()} external>Falar no WhatsApp</Button>
-                <Button href={`tel:+${site.whatsappNumber}`} external variant="secondary">Ligar agora</Button>
+                <Button href={whatsappLink()} external>
+                  Falar no WhatsApp
+                </Button>
+                <Button href={`tel:+${site.whatsappNumber}`} external variant="secondary">
+                  Ligar agora
+                </Button>
               </div>
 
               {/* Bloco de confiança */}
               <div className="mt-8 rounded-3xl border border-nude-escuro/40 bg-creme p-6 text-sm text-grafite-suave">
                 <p className="font-medium text-grafite">Atendimento com hora marcada</p>
                 <p className="mt-2 leading-relaxed">
-                  Trabalhamos com agendamento para garantir a você um atendimento tranquilo, reservado e
-                  sem pressa. Seus dados são tratados com cuidado e usados apenas para o seu atendimento.
+                  Trabalhamos com agendamento para garantir a você um atendimento tranquilo, reservado e sem
+                  pressa. Seus dados são tratados com cuidado e usados apenas para o seu atendimento.
                 </p>
               </div>
             </Reveal>

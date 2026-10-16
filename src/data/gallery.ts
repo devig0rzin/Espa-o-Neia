@@ -16,16 +16,19 @@
  *   (b) o formato "antes e depois" pode ser usado publicamente
  *       para os procedimentos em questão, ou se é preciso
  *       adaptar para um formato apenas ilustrativo/institucional.
- *  Até essa validação, as imagens aqui foram enquadradas de forma
- *  discreta (recorte fechado, sem exibir o comparativo completo).
+ *  Até essa validação, os itens ficam com `status: "draft"` —
+ *  aparecem só nos links de preview, nunca em produção.
  * ============================================================
  */
+
+import type { ContentStatus } from "./types";
 
 export type GalleryItem = {
   src: string;
   alt: string;
   caption: string;
   categorySlug: string;
+  status: ContentStatus;
 };
 
 export const galleryReal: GalleryItem[] = [
@@ -34,17 +37,20 @@ export const galleryReal: GalleryItem[] = [
     alt: "Registro real de procedimento de harmonização labial realizado no Espaço Néia",
     caption: "Harmonização labial",
     categorySlug: "estetica-facial",
+    status: "draft",
   },
   {
     src: "/images/real/procedimento-testa-botox-real.png",
     alt: "Registro real de procedimento com toxina botulínica (botox) realizado no Espaço Néia",
     caption: "Suavização de linhas de expressão",
     categorySlug: "estetica-facial",
+    status: "draft",
   },
   {
     src: "/images/real/procedimento-gluteo-real.png",
     alt: "Registro real de protocolo de modelagem corporal realizado no Espaço Néia",
     caption: "Modelagem corporal",
     categorySlug: "emagrecimento-e-modelagem-corporal",
+    status: "draft",
   },
 ];
