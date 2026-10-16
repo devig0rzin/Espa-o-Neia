@@ -8,7 +8,10 @@ export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="relative overflow-hidden border-t border-nude-escuro/40 bg-creme">
-      <div aria-hidden className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-aqua/10 blur-3xl" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-aqua/10 blur-3xl"
+      />
       <div className="container-wide relative grid gap-12 py-16 md:grid-cols-4">
         {/* Marca */}
         <div className="md:col-span-1">
@@ -44,7 +47,9 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-grafite-suave">
             {mainNav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-rose">{item.label}</Link>
+                <Link href={item.href} className="hover:text-rose">
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
@@ -56,7 +61,9 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-grafite-suave">
             {categories.map((c) => (
               <li key={c.slug}>
-                <Link href={`/servicos/${c.slug}`} className="hover:text-rose">{c.name}</Link>
+                <Link href={`/servicos/${c.slug}`} className="hover:text-rose">
+                  {c.name}
+                </Link>
               </li>
             ))}
           </ul>
@@ -67,11 +74,22 @@ export function Footer() {
           <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider2 text-aqua">Contato</h3>
           <address className="space-y-2 text-sm not-italic leading-relaxed text-grafite-suave">
             <p>{site.address.street}</p>
-            <p>{site.address.district}<br />{site.address.city} — {site.address.state}, {site.address.zip}</p>
             <p>
-              <a href={`tel:+${site.whatsappNumber}`} className="hover:text-rose">{site.phoneDisplay}</a>
+              {site.address.district}
+              <br />
+              {site.address.city} — {site.address.state}, {site.address.zip}
             </p>
-            <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="inline-block pt-1 text-rose hover:text-rose-escuro">
+            <p>
+              <a href={`tel:+${site.whatsappNumber}`} className="hover:text-rose">
+                {site.phoneDisplay}
+              </a>
+            </p>
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block pt-1 text-rose hover:text-rose-escuro"
+            >
               Falar no WhatsApp →
             </a>
           </address>
@@ -88,10 +106,16 @@ export function Footer() {
 
       <div className="border-t border-nude-escuro/40">
         <div className="container-wide flex flex-col items-center justify-between gap-3 py-6 text-xs text-grafite-suave md:flex-row">
-          <p>© {year} {site.legalName}. Todos os direitos reservados.</p>
+          <p>
+            © {year} {site.legalName}. Todos os direitos reservados.
+          </p>
           <div className="flex gap-5">
-            <Link href="/politica-de-privacidade" className="hover:text-rose">Política de Privacidade</Link>
-            <Link href="/termos-de-uso" className="hover:text-rose">Termos de Uso</Link>
+            <Link href="/politica-de-privacidade" className="hover:text-rose">
+              Política de Privacidade
+            </Link>
+            <Link href="/termos-de-uso" className="hover:text-rose">
+              Termos de Uso
+            </Link>
           </div>
         </div>
       </div>

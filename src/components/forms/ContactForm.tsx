@@ -49,7 +49,15 @@ export function ContactForm() {
         <label htmlFor="nome" className="mb-1.5 block text-sm font-medium text-grafite">
           Nome completo
         </label>
-        <input id="nome" name="nome" type="text" required autoComplete="name" placeholder="Seu nome" className={fieldClass} />
+        <input
+          id="nome"
+          name="nome"
+          type="text"
+          required
+          autoComplete="name"
+          placeholder="Seu nome"
+          className={fieldClass}
+        />
       </div>
 
       <div>
@@ -75,10 +83,14 @@ export function ContactForm() {
           Sobre o que deseja falar?
         </label>
         <select id="interesse" name="interesse" required defaultValue="" className={fieldClass}>
-          <option value="" disabled>Selecione uma opção</option>
+          <option value="" disabled>
+            Selecione uma opção
+          </option>
           <option value="Avaliação inicial">Avaliação inicial</option>
           {categories.map((c) => (
-            <option key={c.slug} value={c.name}>{c.name}</option>
+            <option key={c.slug} value={c.name}>
+              {c.name}
+            </option>
           ))}
           <option value="Campanhas / promoções">Campanhas / promoções</option>
           <option value="Outro assunto">Outro assunto</option>
@@ -89,7 +101,13 @@ export function ContactForm() {
         <label htmlFor="mensagem" className="mb-1.5 block text-sm font-medium text-grafite">
           Mensagem <span className="text-grafite-suave/60">(opcional)</span>
         </label>
-        <textarea id="mensagem" name="mensagem" rows={4} placeholder="Conte um pouco sobre o que você procura." className={fieldClass} />
+        <textarea
+          id="mensagem"
+          name="mensagem"
+          rows={4}
+          placeholder="Conte um pouco sobre o que você procura."
+          className={fieldClass}
+        />
       </div>
 
       {/* Consentimento LGPD */}
@@ -104,8 +122,10 @@ export function ContactForm() {
         />
         <label htmlFor="consent" className="text-xs leading-relaxed text-grafite-suave">
           Autorizo o contato do Espaço Néia pelos dados informados e li a{" "}
-          <a href="/politica-de-privacidade" className="text-rose underline">Política de Privacidade</a>.
-          Meus dados serão usados apenas para responder a esta solicitação.
+          <a href="/politica-de-privacidade" className="text-rose underline">
+            Política de Privacidade
+          </a>
+          . Meus dados serão usados apenas para responder a esta solicitação.
         </label>
       </div>
 

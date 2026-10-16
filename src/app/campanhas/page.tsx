@@ -19,13 +19,15 @@ export default function CampanhasPage() {
       <Section className="bg-gradient-to-b from-creme to-marfim">
         <div className="container-narrow text-center">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">Campanhas &amp; protocolos</p>
+            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">
+              Campanhas &amp; protocolos
+            </p>
             <h1 className="mt-4 font-display text-4xl leading-tight text-grafite md:text-5xl">
               Condições especiais para cuidar de você
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-grafite-suave">
-              Selecionamos protocolos e pacotes com condições especiais. Aproveite e agende sua avaliação
-              para começar.
+              Selecionamos protocolos e pacotes com condições especiais. Aproveite e agende sua avaliação para
+              começar.
             </p>
           </Reveal>
         </div>
@@ -53,7 +55,10 @@ export default function CampanhasPage() {
         </p>
       </Section>
 
-      <CtaBanner title="Quer aproveitar uma condição?" description="Fale com a gente pelo WhatsApp e garanta seu horário." />
+      <CtaBanner
+        title="Quer aproveitar uma condição?"
+        description="Fale com a gente pelo WhatsApp e garanta seu horário."
+      />
     </>
   );
 }

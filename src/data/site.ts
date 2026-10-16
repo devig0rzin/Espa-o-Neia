@@ -37,13 +37,25 @@ export const site = {
     state: "SP",
     zip: "06717-125",
     // Cidades / bairros para SEO local (usados nos textos e no schema)
-    serviceAreas: ["Cotia", "Granja Viana", "Vila São Francisco de Assis", "Caucaia do Alto", "Vargem Grande Paulista"],
+    serviceAreas: [
+      "Cotia",
+      "Granja Viana",
+      "Vila São Francisco de Assis",
+      "Caucaia do Alto",
+      "Vargem Grande Paulista",
+    ],
   },
 
   // ----- HORÁRIOS (exibidos e usados no JSON-LD) -----
   hours: [
     { label: "Segunda-feira", value: "13h às 20h", days: ["Monday"], opens: "13:00", closes: "20:00" },
-    { label: "Terça a sexta", value: "9h às 20h", days: ["Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "20:00" },
+    {
+      label: "Terça a sexta",
+      value: "9h às 20h",
+      days: ["Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "20:00",
+    },
     { label: "Sábado", value: "9h às 18h", days: ["Saturday"], opens: "09:00", closes: "18:00" },
     { label: "Domingo", value: "Fechado", days: ["Sunday"], opens: null, closes: null },
   ],
@@ -56,15 +68,13 @@ export const site = {
 
   // ----- MAPA (Google Maps embed) -----
   // Substitua pela URL de "Incorporar um mapa" do Google Maps do endereço real, se desejar precisão.
-  mapEmbedQuery:
-    "Av. Catarina Etelvina Pedroso, 12 - Vila São Francisco de Assis, Cotia - SP, 06717-125",
+  mapEmbedQuery: "Av. Catarina Etelvina Pedroso, 12 - Vila São Francisco de Assis, Cotia - SP, 06717-125",
 } as const;
 
 /** Mensagem padrão do WhatsApp. Personalize o texto de abertura aqui. */
 export function whatsappLink(message?: string) {
   const text = encodeURIComponent(
-    message ??
-      "Olá! Vim pelo site do Espaço Néia e gostaria de agendar minha avaliação gratuita. 💛",
+    message ?? "Olá! Vim pelo site do Espaço Néia e gostaria de agendar minha avaliação gratuita. 💛",
   );
   return `https://wa.me/${site.whatsappNumber}?text=${text}`;
 }

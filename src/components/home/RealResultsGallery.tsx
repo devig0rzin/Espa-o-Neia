@@ -43,7 +43,10 @@ export function RealResultsGallery() {
                 Depois
               </span>
 
-              <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-petrol/85 to-transparent" />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-petrol/85 to-transparent"
+              />
               <div className="absolute inset-x-0 bottom-0 p-5">
                 <span className="inline-flex items-center rounded-full bg-rose/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-marfim">
                   Foto real

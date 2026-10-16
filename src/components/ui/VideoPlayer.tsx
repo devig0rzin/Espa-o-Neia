@@ -18,7 +18,13 @@ type Props = {
  * - Com `src`: inicia automaticamente, sem som, em loop e mantém
  *   os controles nativos disponíveis.
  */
-export function VideoPlayer({ src, poster, label = "Vídeo institucional", ratio = "aspect-[4/5]", className }: Props) {
+export function VideoPlayer({
+  src,
+  poster,
+  label = "Vídeo institucional",
+  ratio = "aspect-[4/5]",
+  className,
+}: Props) {
   if (!src) {
     return (
       <div
@@ -28,7 +34,10 @@ export function VideoPlayer({ src, poster, label = "Vídeo institucional", ratio
           className,
         )}
       >
-        <div aria-hidden className="pointer-events-none absolute inset-0 opacity-20 [background:radial-gradient(circle_at_30%_20%,white,transparent_55%)]" />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-20 [background:radial-gradient(circle_at_30%_20%,white,transparent_55%)]"
+        />
         <div className="relative px-6">
           <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-marfim/50 bg-marfim/10 backdrop-blur">
             <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6 fill-marfim" aria-hidden>
@@ -43,7 +52,13 @@ export function VideoPlayer({ src, poster, label = "Vídeo institucional", ratio
   }
 
   return (
-    <div className={cn("relative overflow-hidden rounded-3xl border border-nude-escuro/50 shadow-suave", ratio, className)}>
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-3xl border border-nude-escuro/50 shadow-suave",
+        ratio,
+        className,
+      )}
+    >
       <video
         src={src}
         poster={poster ?? undefined}

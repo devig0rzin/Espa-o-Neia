@@ -25,9 +25,7 @@ export function CampaignCard({ campaign }: { campaign: Campaign }) {
       <h3 className="mt-4 font-display text-2xl leading-snug text-grafite">{campaign.title}</h3>
       <p className="mt-3 text-sm leading-relaxed text-grafite-suave">{campaign.description}</p>
 
-      {campaign.sessions && (
-        <p className="mt-4 text-sm font-medium text-grafite">{campaign.sessions}</p>
-      )}
+      {campaign.sessions && <p className="mt-4 text-sm font-medium text-grafite">{campaign.sessions}</p>}
 
       {/* Preços */}
       <div className="mt-4 flex items-end gap-3">
@@ -38,9 +36,7 @@ export function CampaignCard({ campaign }: { campaign: Campaign }) {
           <span className="font-display text-2xl text-rose">{campaign.currentPrice}</span>
         )}
       </div>
-      {campaign.installment && (
-        <p className="mt-1 text-xs text-grafite-suave">{campaign.installment}</p>
-      )}
+      {campaign.installment && <p className="mt-1 text-xs text-grafite-suave">{campaign.installment}</p>}
 
       <div className="mt-6">
         <Button href={whatsappLink(message)} external className="w-full">

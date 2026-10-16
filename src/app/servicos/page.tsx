@@ -58,7 +58,9 @@ export default function ServicosPage() {
               >
                 <div className="flex items-center justify-between">
                   <h3 className="font-display text-xl text-grafite">{c.name}</h3>
-                  <span className="text-rose transition-transform group-hover:translate-x-1" aria-hidden>→</span>
+                  <span className="text-rose transition-transform group-hover:translate-x-1" aria-hidden>
+                    →
+                  </span>
                 </div>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {c.procedures.map((p) => (
@@ -67,7 +69,13 @@ export default function ServicosPage() {
                       className="inline-flex items-center gap-1.5 rounded-full border border-nude-escuro/50 bg-creme px-3 py-1.5 text-xs text-grafite-suave"
                     >
                       {p.name}
-                      {p.regulated && <span className="h-1.5 w-1.5 rounded-full bg-rose" aria-label="Indicação profissional" title="Indicação profissional" />}
+                      {p.regulated && (
+                        <span
+                          className="h-1.5 w-1.5 rounded-full bg-rose"
+                          aria-label="Indicação profissional"
+                          title="Indicação profissional"
+                        />
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -77,11 +85,15 @@ export default function ServicosPage() {
         </div>
 
         <p className="mx-auto mt-10 flex max-w-2xl items-center justify-center gap-2 text-center text-xs text-grafite-suave">
-          <span className="h-1.5 w-1.5 rounded-full bg-rose" aria-hidden /> Procedimentos com indicação e execução restritas a profissional habilitado, mediante avaliação individual.
+          <span className="h-1.5 w-1.5 rounded-full bg-rose" aria-hidden /> Procedimentos com indicação e
+          execução restritas a profissional habilitado, mediante avaliação individual.
         </p>
       </Section>
 
-      <CtaBanner title="Não sabe por onde começar?" description="Na avaliação, indicamos o caminho ideal para o seu objetivo. Fale com a gente." />
+      <CtaBanner
+        title="Não sabe por onde começar?"
+        description="Na avaliação, indicamos o caminho ideal para o seu objetivo. Fale com a gente."
+      />
     </>
   );
 }
