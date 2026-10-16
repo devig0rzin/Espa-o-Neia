@@ -5,6 +5,9 @@
  *  Para lançar uma promoção nova: copie um bloco, ajuste os
  *  textos e o preço, e defina `active: true`.
  *  Para tirar do ar: mude para `active: false` (ou apague).
+ *  `validUntil` é a data final no formato ANO-MÊS-DIA ("2026-08-31"):
+ *  depois desse dia a campanha sai do ar sozinha, sem novo deploy.
+ *  Só aparece em produção com `status: "approved"`.
  *
  *  ⚠️ ATENÇÃO: os valores, sessões e datas abaixo são FICTÍCIOS —
  *  preenchidos apenas para a cliente visualizar o protótipo com
@@ -27,7 +30,8 @@ export type Campaign = {
   referencePrice?: string; // preço "de" (riscado)
   currentPrice?: string; // preço "por"
   installment?: string; // ex.: "ou 3x sem juros"
-  validUntil?: string; // validade
+  validUntil?: string; // data final, ISO "AAAA-MM-DD" (o dia inteiro vale)
+  availabilityNote?: string; // ex.: "Agenda sujeita à disponibilidade"
   legalNote?: string; // observação legal
   highlight?: boolean; // destaque visual
 };
@@ -45,7 +49,7 @@ export const campaigns: Campaign[] = [
     referencePrice: "R$ 1.800",
     currentPrice: "R$ 1.290",
     installment: "ou 6x de R$ 215 sem juros",
-    validUntil: "Válido até 31/08/2026",
+    validUntil: "2026-08-31",
     legalNote:
       "Valor fictício para apresentação do protótipo — confirmar preço final e condições com a responsável técnica antes da publicação. Resultados dependem de avaliação individual.",
     highlight: true,
@@ -62,7 +66,7 @@ export const campaigns: Campaign[] = [
     referencePrice: "R$ 560",
     currentPrice: "R$ 390",
     installment: "ou 3x de R$ 130 sem juros",
-    validUntil: "Válido até 31/08/2026",
+    validUntil: "2026-08-31",
     legalNote:
       "Valor fictício para apresentação do protótipo — confirmar preço final e condições antes da publicação.",
   },
@@ -76,9 +80,7 @@ export const campaigns: Campaign[] = [
       "Agende sua avaliação inicial sem custo e conheça o Espaço Néia. Um momento para entender seus objetivos e apresentar as melhores opções para você.",
     sessions: "Avaliação individual",
     currentPrice: "Gratuita",
-    validUntil: "Agenda sujeita à disponibilidade",
+    availabilityNote: "Agenda sujeita à disponibilidade",
     legalNote: "Avaliação gratuita para novas clientes, mediante agendamento prévio.",
   },
 ];
-
-export const activeCampaigns = () => campaigns.filter((c) => c.active);

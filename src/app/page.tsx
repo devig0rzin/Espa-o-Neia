@@ -12,7 +12,8 @@ import { Button } from "@/components/ui/Button";
 import { Placeholder } from "@/components/ui/Placeholder";
 import { FaqJsonLd } from "@/components/seo/JsonLd";
 import { categories } from "@/data/categories";
-import { activeCampaigns } from "@/data/campaigns";
+import { campaigns } from "@/data/campaigns";
+import { liveCampaigns } from "@/lib/campaigns";
 import { faq } from "@/data/faq";
 import { testimonials } from "@/data/testimonials";
 import { visible } from "@/lib/drafts";
@@ -56,10 +57,13 @@ const etapas = [
   },
 ];
 
+// Revalida a cada 24h para campanhas vencidas saírem do ar sem novo deploy.
+export const revalidate = 86400;
+
 export default function HomePage() {
   const depoimentos = visible(testimonials);
   const perguntas = visible(faq);
-  const campanhas = visible(activeCampaigns());
+  const campanhas = liveCampaigns(campaigns);
   return (
     <>
       <Hero />

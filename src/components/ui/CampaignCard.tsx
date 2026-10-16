@@ -2,6 +2,7 @@ import type { Campaign } from "@/data/campaigns";
 import { whatsappLink } from "@/data/site";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { formatDateBR } from "@/lib/campaigns";
 
 /**
  * Card de campanha/promoção reutilizável.
@@ -46,7 +47,8 @@ export function CampaignCard({ campaign }: { campaign: Campaign }) {
 
       {/* Validade + observação legal */}
       <div className="mt-5 space-y-1 border-t border-nude-escuro/40 pt-4 text-xs text-grafite-suave">
-        {campaign.validUntil && <p>Validade: {campaign.validUntil}</p>}
+        {campaign.validUntil && <p>Válido até {formatDateBR(campaign.validUntil)}</p>}
+        {campaign.availabilityNote && <p>{campaign.availabilityNote}</p>}
         {campaign.legalNote && <p className="italic">{campaign.legalNote}</p>}
       </div>
     </article>
