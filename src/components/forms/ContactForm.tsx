@@ -19,12 +19,19 @@ import { MAX_MESSAGE_LENGTH, validateContact, type ContactErrors } from "@/lib/c
  * o corpo de handleSubmit por um fetch para essa rota.
  */
 const FIELD_ORDER: (keyof ContactFields)[] = ["nome", "telefone", "interesse", "mensagem", "consent"];
+const FIELD_LABELS: Record<keyof ContactFields, string> = {
+  nome: "nome",
+  telefone: "telefone",
+  interesse: "assunto",
+  mensagem: "mensagem",
+  consent: "autorização de contato",
+};
 
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState<ContactErrors>({});
-  const [sent, setSent] = useState(false);
+  const [sentUrl, setSentUrl] = useState<string | null>(null);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -40,14 +47,15 @@ export function ContactForm() {
     const result = validateContact(fields);
     setErrors(result.errors);
     if (!result.ok) {
-      setSent(false);
+      setSentUrl(null);
       const first = FIELD_ORDER.find((k) => result.errors[k]);
       if (first) formRef.current?.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
       return;
     }
 
-    setSent(true);
-    window.open(buildWhatsappUrl(contactMessage(fields), site.whatsappNumber), "_blank", "noopener");
+    const url = buildWhatsappUrl(contactMessage(fields), site.whatsappNumber);
+    setSentUrl(url);
+    window.open(url, "_blank", "noopener");
   }
 
   /** Liga o campo à mensagem de erro (leitores de tela anunciam o erro ao focar o campo). */
@@ -75,8 +83,10 @@ export function ContactForm() {
         role="alert"
         className={errorCount ? "rounded-xl bg-red-50 px-4 py-3 text-sm text-red-800" : "sr-only"}
       >
-        {errorCount === 1 && "Revise 1 campo para continuar."}
-        {errorCount > 1 && `Revise ${errorCount} campos para continuar.`}
+        {errorCount > 0 &&
+          `Revise para continuar: ${FIELD_ORDER.filter((k) => errors[k])
+            .map((k) => FIELD_LABELS[k])
+            .join(", ")}.`}
       </div>
 
       <div>
@@ -184,9 +194,13 @@ export function ContactForm() {
         Solicitar atendimento
       </button>
 
-      {sent && (
+      {sentUrl && (
         <p className="text-center text-sm text-rose" role="status">
-          Abrindo o WhatsApp com os seus dados… Se não abrir, chame-nos diretamente.
+          Abrindo o WhatsApp com os seus dados… Se não abrir,{" "}
+          <a href={sentUrl} target="_blank" rel="noopener noreferrer" className="underline">
+            toque aqui para enviar a mensagem
+          </a>
+          .
         </p>
       )}
     </form>

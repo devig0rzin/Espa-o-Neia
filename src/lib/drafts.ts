@@ -1,3 +1,4 @@
+import "server-only";
 import type { ContentStatus } from "@/data/types";
 
 /**

@@ -66,11 +66,13 @@ export function RealResultsGallery() {
         Resultados variam de pessoa para pessoa e dependem de avaliação individual — nenhuma imagem aqui
         representa promessa ou garantia de resultado.
       </p>
-      <Placeholder label="Antes e depois" className="mx-auto mt-6 max-w-2xl text-center">
-        Galeria visível só no preview. Antes de aprovar em <code>src/data/gallery.ts</code>, a responsável
-        técnica precisa confirmar o formato com o conselho profissional e o termo de uso de imagem de cada
-        paciente.
-      </Placeholder>
+      {items.some((i) => i.status === "draft") && (
+        <Placeholder label="Antes e depois" className="mx-auto mt-6 max-w-2xl text-center">
+          Galeria visível só no preview. Antes de aprovar em <code>src/data/gallery.ts</code>, a responsável
+          técnica precisa confirmar o formato com o conselho profissional e o termo de uso de imagem de cada
+          paciente.
+        </Placeholder>
+      )}
     </Section>
   );
 }

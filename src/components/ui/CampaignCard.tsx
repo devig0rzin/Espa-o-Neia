@@ -3,6 +3,7 @@ import { whatsappLink } from "@/data/site";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { formatDateBR } from "@/lib/campaigns";
+import { Placeholder } from "@/components/ui/Placeholder";
 
 /**
  * Card de campanha/promoção reutilizável.
@@ -51,6 +52,11 @@ export function CampaignCard({ campaign }: { campaign: Campaign }) {
         {campaign.availabilityNote && <p>{campaign.availabilityNote}</p>}
         {campaign.legalNote && <p className="italic">{campaign.legalNote}</p>}
       </div>
+      {campaign.draftNote && (
+        <Placeholder label="Rascunho" className="mt-5 p-4 text-xs">
+          {campaign.draftNote}
+        </Placeholder>
+      )}
     </article>
   );
 }

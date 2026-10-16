@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { publicInstagram, site, whatsappLink } from "@/data/site";
+import { site, whatsappLink } from "@/data/site";
+import { publicInstagram } from "@/lib/public-contact";
 import { mainNav } from "@/data/navigation";
 import { categories } from "@/data/categories";
 

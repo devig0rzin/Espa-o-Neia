@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/campanhas" },
 };
 
-// Revalida a cada 24h para campanhas vencidas saírem do ar sem novo deploy.
-export const revalidate = 86400;
+// Revalida a cada 1h: campanhas vencidas saem do ar sem novo deploy (no máximo ~1h após o fim do dia).
+export const revalidate = 3600;
 
 const mensagemSemCampanha = "Olá! Vim pela página de campanhas e gostaria de saber das condições atuais.";
 
@@ -76,10 +76,12 @@ export default function CampanhasPage() {
         )}
       </Section>
 
-      <CtaBanner
-        title="Quer aproveitar uma condição?"
-        description="Fale com a gente pelo WhatsApp e garanta seu horário."
-      />
+      {promos.length > 0 && (
+        <CtaBanner
+          title="Quer aproveitar uma condição?"
+          description="Fale com a gente pelo WhatsApp e garanta seu horário."
+        />
+      )}
     </>
   );
 }

@@ -57,8 +57,8 @@ const etapas = [
   },
 ];
 
-// Revalida a cada 24h para campanhas vencidas saírem do ar sem novo deploy.
-export const revalidate = 86400;
+// Revalida a cada 1h: campanhas vencidas saem do ar sem novo deploy (no máximo ~1h após o fim do dia).
+export const revalidate = 3600;
 
 export default function HomePage() {
   const depoimentos = visible(testimonials);
@@ -213,7 +213,7 @@ export default function HomePage() {
               ))}
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/campanhas">Ver protocolos em destaque</Button>
+              {campanhas.length > 0 && <Button href="/campanhas">Ver protocolos em destaque</Button>}
               <Button href={whatsappLink()} external variant="secondary">
                 Falar no WhatsApp
               </Button>

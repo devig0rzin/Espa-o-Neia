@@ -94,10 +94,12 @@ export default function SobrePage() {
       {equipe.length > 0 && (
         <Section>
           <SectionHeading eyebrow="Quem cuida de você" title="Nossa equipe" />
-          <Placeholder label="Equipe" className="mx-auto mt-8 max-w-2xl text-center">
-            Nomes fictícios, visíveis só no preview. Substitua por integrantes reais em{" "}
-            <code>src/data/team.ts</code> e marque <code>status: &quot;approved&quot;</code>.
-          </Placeholder>
+          {equipe.some((m) => m.status === "draft") && (
+            <Placeholder label="Equipe" className="mx-auto mt-8 max-w-2xl text-center">
+              Nomes fictícios, visíveis só no preview. Substitua por integrantes reais em{" "}
+              <code>src/data/team.ts</code> e marque <code>status: &quot;approved&quot;</code>.
+            </Placeholder>
+          )}
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {equipe.map((member) => (
               <div

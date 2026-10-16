@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "@/components/ui/LegalLayout";
 import { Placeholder } from "@/components/ui/Placeholder";
-import { publicEmail, site } from "@/data/site";
+import { site } from "@/data/site";
+import { publicEmail } from "@/lib/public-contact";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade",

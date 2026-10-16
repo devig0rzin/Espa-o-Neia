@@ -30,9 +30,10 @@ export type Campaign = {
   referencePrice?: string; // preço "de" (riscado)
   currentPrice?: string; // preço "por"
   installment?: string; // ex.: "ou 3x sem juros"
-  validUntil?: string; // data final, ISO "AAAA-MM-DD" (o dia inteiro vale)
+  validUntil?: `${number}-${number}-${number}`; // data final, ISO "AAAA-MM-DD" (o dia inteiro vale)
   availabilityNote?: string; // ex.: "Agenda sujeita à disponibilidade"
-  legalNote?: string; // observação legal
+  legalNote?: string; // observação legal (texto real, aparece em produção)
+  draftNote?: string; // aviso interno de rascunho — aparece só no preview
   highlight?: boolean; // destaque visual
 };
 
@@ -50,8 +51,8 @@ export const campaigns: Campaign[] = [
     currentPrice: "R$ 1.290",
     installment: "ou 6x de R$ 215 sem juros",
     validUntil: "2026-08-31",
-    legalNote:
-      "Valor fictício para apresentação do protótipo — confirmar preço final e condições com a responsável técnica antes da publicação. Resultados dependem de avaliação individual.",
+    draftNote: "Valor fictício — confirmar preço final e condições com a responsável técnica.",
+    legalNote: "Resultados dependem de avaliação individual.",
     highlight: true,
   },
   {
@@ -67,8 +68,7 @@ export const campaigns: Campaign[] = [
     currentPrice: "R$ 390",
     installment: "ou 3x de R$ 130 sem juros",
     validUntil: "2026-08-31",
-    legalNote:
-      "Valor fictício para apresentação do protótipo — confirmar preço final e condições antes da publicação.",
+    draftNote: "Valor fictício — confirmar preço final e condições antes da publicação.",
   },
   {
     id: "primeira-avaliacao",

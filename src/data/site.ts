@@ -12,7 +12,6 @@
  */
 
 import type { ContentStatus } from "./types";
-import { showDrafts } from "@/lib/drafts";
 import { buildWhatsappUrl } from "@/lib/whatsapp";
 
 export const site = {
@@ -85,15 +84,4 @@ export function whatsappLink(
   message = "Olá! Vim pelo site do Espaço Néia e gostaria de agendar minha avaliação gratuita. 💛",
 ) {
   return buildWhatsappUrl(message, site.whatsappNumber);
-}
-
-/** E-mail de contato, se puder aparecer no ambiente atual (null enquanto for rascunho em produção). */
-export function publicEmail(): string | null {
-  return site.email.status === "approved" || showDrafts() ? site.email.value : null;
-}
-
-/** Perfil do Instagram, se puder aparecer no ambiente atual. */
-export function publicInstagram() {
-  const ig = site.social.instagram;
-  return ig.status === "approved" || showDrafts() ? ig : null;
 }

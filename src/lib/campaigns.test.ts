@@ -13,7 +13,7 @@ const base: Campaign = {
 const env = (vars: Record<string, string>) => vars as unknown as NodeJS.ProcessEnv;
 
 describe("isCampaignLive", () => {
-  const c = { ...base, validUntil: "2026-08-31" };
+  const c = { ...base, validUntil: "2026-08-31" as const };
   it("vale até o fim do último dia no horário de Brasília", () => {
     expect(isCampaignLive(c, new Date("2026-08-31T23:59:00-03:00"))).toBe(true);
   });
@@ -33,7 +33,7 @@ describe("liveCampaigns", () => {
   const list = [
     { ...base, id: "a" },
     { ...base, id: "b", status: "draft" as const },
-    { ...base, id: "c", validUntil: "2026-07-31" },
+    { ...base, id: "c", validUntil: "2026-07-31" as const },
   ];
   it("em produção filtra rascunhos e vencidas", () => {
     expect(liveCampaigns(list, now, env({ VERCEL_ENV: "production" })).map((c) => c.id)).toEqual(["a"]);
