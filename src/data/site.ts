@@ -13,6 +13,7 @@
 
 import type { ContentStatus } from "./types";
 import { showDrafts } from "@/lib/drafts";
+import { buildWhatsappUrl } from "@/lib/whatsapp";
 
 export const site = {
   name: "Espaço Néia",
@@ -80,11 +81,10 @@ export const site = {
 } as const;
 
 /** Mensagem padrão do WhatsApp. Personalize o texto de abertura aqui. */
-export function whatsappLink(message?: string) {
-  const text = encodeURIComponent(
-    message ?? "Olá! Vim pelo site do Espaço Néia e gostaria de agendar minha avaliação gratuita. 💛",
-  );
-  return `https://wa.me/${site.whatsappNumber}?text=${text}`;
+export function whatsappLink(
+  message = "Olá! Vim pelo site do Espaço Néia e gostaria de agendar minha avaliação gratuita. 💛",
+) {
+  return buildWhatsappUrl(message, site.whatsappNumber);
 }
 
 /** E-mail de contato, se puder aparecer no ambiente atual (null enquanto for rascunho em produção). */
