@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Hero } from "@/components/home/Hero";
+import { Journey } from "@/components/home/Journey";
+import { Marquee } from "@/components/motion/Marquee";
 import { ExperienceSection } from "@/components/home/ExperienceSection";
 import { RealResultsGallery } from "@/components/home/RealResultsGallery";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -32,6 +34,8 @@ const pilares = [
   { title: "Bem-estar", text: "Momentos de autocuidado em um ambiente clean e acolhedor." },
 ];
 
+const marqueeItems = ["Limpeza de pele", "Criolipólise", "Drenagem linfática", "Micropigmentação", "Massagem relaxante", "Lipocavitação", "Cílios", "Manicure & pedicure"];
+
 const diferenciais = [
   {
     title: "Avaliação individual",
@@ -47,15 +51,6 @@ const diferenciais = [
   { title: "Localização", text: "No coração de Cotia, atendendo Granja Viana e toda a região." },
 ];
 
-const etapas = [
-  { n: "01", title: "Avaliação", text: "Conversamos sobre seus objetivos, histórico e expectativas." },
-  { n: "02", title: "Plano personalizado", text: "Desenhamos o protocolo ideal para o seu momento." },
-  {
-    n: "03",
-    title: "Acompanhamento",
-    text: "Cuidamos de você a cada sessão, com ajustes quando necessário.",
-  },
-];
 
 // Revalida a cada 1h: campanhas vencidas saem do ar sem novo deploy (no máximo ~1h após o fim do dia).
 export const revalidate = 3600;
@@ -67,6 +62,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <Marquee items={marqueeItems} />
 
       {/* AUTORIDADE & ACOLHIMENTO */}
       <Section container="narrow" className="text-center">
@@ -143,51 +139,8 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* TECNOLOGIA & PERSONALIZAÇÃO */}
-      <Section>
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <Reveal>
-            {/* Imagem ilustrativa (gerada por IA) — ver public/images/ilustrativas/ */}
-            <div className="relative aspect-[5/4] overflow-hidden rounded-3xl border border-nude-escuro/40 shadow-card">
-              <Image
-                src="/images/ilustrativas/cuidado-facial-gotas.png"
-                alt="Ilustração de cuidado facial personalizado no Espaço Néia"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">
-              Tecnologia &amp; personalização
-            </p>
-            <h2 className="mt-3 font-display text-3xl leading-tight text-grafite md:text-4xl">
-              O seu protocolo, desenhado passo a passo
-            </h2>
-            <p className="mt-4 leading-relaxed text-grafite-suave">
-              Acreditamos que resultado de verdade vem de um plano feito para você — nunca de fórmulas
-              prontas. Veja como conduzimos a sua jornada:
-            </p>
-            <ol className="mt-8 space-y-6">
-              {etapas.map((e) => (
-                <li key={e.n} className="flex gap-5">
-                  <span className="font-display text-2xl text-rose">{e.n}</span>
-                  <div>
-                    <h3 className="font-medium text-grafite">{e.title}</h3>
-                    <p className="text-sm text-grafite-suave">{e.text}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-            <div className="mt-8">
-              <Button href={whatsappLink()} external>
-                Começar pela avaliação
-              </Button>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
+      {/* JORNADA — seção fixada com animação no scroll */}
+      <Journey />
 
       {/* PROTOCOLOS EXCLUSIVOS (destaque premium) */}
       <Section className="bg-gradient-to-br from-nude/60 via-creme to-marfim">

@@ -47,3 +47,21 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ---- Movimento ---- */
+@layer utilities {
+  /* Elementos que o GSAP revela: ficam ocultos até o JS rodar (e visíveis sem JS / com menos movimento). */
+  .gsap-in {
+    opacity: 0;
+  }
+  @media (scripting: none) {
+    .gsap-in {
+      opacity: 1;
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gsap-in {
+    opacity: 1 !important;
+  }
+}

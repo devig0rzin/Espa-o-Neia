@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { LocalBusinessJsonLd } from "@/components/seo/JsonLd";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { site } from "@/data/site";
 
 // Fontes auto-hospedadas pelo Next (sem chamadas externas em runtime)
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${display.variable} ${sans.variable}`}>
       <body>
+        <SmoothScroll />
         <LocalBusinessJsonLd />
         {/* Link "pular para conteúdo" — acessibilidade */}
         <a

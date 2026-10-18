@@ -53,10 +53,15 @@ const config: Config = {
           "0%, 100%": { transform: "scale(1)" },
           "50%": { transform: "scale(1.06)" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "fade-rise": "fade-rise 0.7s ease-out both",
         breathe: "breathe 2.8s ease-in-out infinite",
+        marquee: "marquee 38s linear infinite",
       },
     },
   },

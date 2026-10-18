@@ -27,3 +27,18 @@ export const media = {
     label: "Conheça o espaço e os procedimentos",
   },
 };
+
+/**
+ * ANIMAÇÃO QUADRO A QUADRO (scroll) — preencha quando os quadros estiverem prontos.
+ * 1. Exporte os quadros do vídeo como WebP numerados (0001.webp, 0002.webp, ...)
+ * 2. Coloque em public/frames/jornada/
+ * 3. Preencha `pattern` e `frames`. Enquanto `pattern` for null, a seção
+ *    "Sua jornada" usa as imagens ilustrativas como alternativa.
+ */
+export const scrollSequence = {
+  jornada: {
+    pattern: null as string | null, // ex.: "/frames/jornada/{n}.webp"
+    frames: 0,
+    pad: 4,
+  },
+};

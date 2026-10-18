@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { site } from "@/data/site";
 import { categories } from "@/data/categories";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const staticRoutes = [

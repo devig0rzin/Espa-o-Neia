@@ -69,8 +69,8 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href={whatsappLink()} external size="md">
-            Avaliação gratuita
+          <Button href="/agendar" size="md">
+            Agendar horário
           </Button>
         </div>
 

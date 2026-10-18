@@ -24,11 +24,11 @@ export function CtaBanner({
         <h2 className="font-display text-3xl leading-tight md:text-5xl">{title}</h2>
         <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-marfim/80">{description}</p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button href={whatsappLink()} external size="lg">
-            Avaliação gratuita
+          <Button href="/agendar" size="lg">
+            Agendar online
           </Button>
-          <Button href="/contato" variant="aqua" size="lg">
-            Solicitar atendimento
+          <Button href={whatsappLink()} external variant="outline-light" size="lg">
+            Falar no WhatsApp
           </Button>
         </div>
       </div>
