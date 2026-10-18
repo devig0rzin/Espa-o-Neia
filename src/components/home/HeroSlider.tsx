@@ -63,7 +63,9 @@ export function HeroSlider() {
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <h1 className="sr-only">Espaço Néia: estética avançada, emagrecimento e beleza em Cotia e Granja Viana</h1>
+      <h1 className="sr-only">
+        Espaço Néia: estética avançada, emagrecimento e beleza em Cotia e Granja Viana
+      </h1>
       <div className="relative grid lg:min-h-[560px] lg:grid-cols-2">
         {/* Fotos (crossfade) */}
         <div className="relative aspect-[4/3] overflow-hidden lg:aspect-auto">
@@ -129,7 +131,10 @@ export function HeroSlider() {
                   onClick={() => go(i)}
                   aria-label={`Ir para o destaque ${i + 1}`}
                   aria-current={i === index}
-                  className={cn("h-2 rounded-full bg-white transition-all", i === index ? "w-6" : "w-2 opacity-50")}
+                  className={cn(
+                    "h-2 rounded-full bg-white transition-all",
+                    i === index ? "w-6" : "w-2 opacity-50",
+                  )}
                 />
               ))}
             </div>

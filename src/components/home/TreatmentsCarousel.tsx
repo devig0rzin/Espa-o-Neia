@@ -64,10 +64,7 @@ export function TreatmentsCarousel({ items, tabs }: { items: TreatmentItem[]; ta
           className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2"
         >
           {visibleItems.map((s) => (
-            <li
-              key={s.id}
-              className="w-[72%] shrink-0 snap-start sm:w-[44%] md:w-[31%] lg:w-[23.5%]"
-            >
+            <li key={s.id} className="w-[72%] shrink-0 snap-start sm:w-[44%] md:w-[31%] lg:w-[23.5%]">
               <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-blush-borda bg-white">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
@@ -89,7 +86,10 @@ export function TreatmentsCarousel({ items, tabs }: { items: TreatmentItem[]; ta
                   {s.priceLabel ? (
                     <span className="text-sm font-semibold text-framboesa">{s.priceLabel}</span>
                   ) : (
-                    <Link href={`/servicos/${s.categorySlug}`} className="text-sm text-grafite-suave hover:text-framboesa">
+                    <Link
+                      href={`/servicos/${s.categorySlug}`}
+                      className="text-sm text-grafite-suave hover:text-framboesa"
+                    >
                       Saiba mais
                     </Link>
                   )}

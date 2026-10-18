@@ -52,8 +52,14 @@ const destaques = [
 
 const motivos = [
   { title: "Ambiente acolhedor", text: "Um espaço reservado e confortável, pensado para o seu bem-estar." },
-  { title: "Tecnologia com critério", text: "Equipamentos e técnicas aplicados com responsabilidade, a partir da avaliação." },
-  { title: "Atendimento próximo", text: "Acompanhamento em cada sessão, com orientação para cuidar de você em casa." },
+  {
+    title: "Tecnologia com critério",
+    text: "Equipamentos e técnicas aplicados com responsabilidade, a partir da avaliação.",
+  },
+  {
+    title: "Atendimento próximo",
+    text: "Acompanhamento em cada sessão, com orientação para cuidar de você em casa.",
+  },
 ];
 
 const pilares = [
@@ -100,7 +106,10 @@ export default function HomePage() {
             <Reveal key={d.title} delay={i * 80} className="py-8 md:px-8 md:py-10 md:first:pl-0">
               <h2 className="font-display text-xl font-semibold text-petrol">{d.title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-grafite-suave">{d.text}</p>
-              <Link href={d.href} className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-framboesa hover:gap-3">
+              <Link
+                href={d.href}
+                className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-framboesa hover:gap-3"
+              >
                 Saiba mais <span aria-hidden>→</span>
               </Link>
             </Reveal>
@@ -126,7 +135,7 @@ export default function HomePage() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
             <div className="relative mx-auto aspect-square w-full max-w-md">
-              <div className="dots-rose absolute inset-0 rounded-full opacity-60 [mask-image:radial-gradient(circle,black_55%,transparent_72%)]" />
+              <div className="dots-rose absolute inset-0 rounded-full opacity-80 [mask-image:radial-gradient(circle,black_55%,transparent_72%)]" />
               <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
                 <span className="flex h-28 w-28 flex-col items-center justify-center rounded-full bg-white shadow-suave">
                   <svg viewBox="0 0 24 24" className="h-9 w-9 text-framboesa" fill="currentColor" aria-hidden>
@@ -175,7 +184,10 @@ export default function HomePage() {
       {/* DEPOIMENTOS — só aparece com depoimentos aprovados (ou nos previews) */}
       {depoimentos.length > 0 && (
         <Section className="pt-0 md:pt-0">
-          <SectionHeading eyebrow="Quem cuida da beleza aqui" title="Histórias de quem confia no Espaço Néia" />
+          <SectionHeading
+            eyebrow="Quem cuida da beleza aqui"
+            title="Histórias de quem confia no Espaço Néia"
+          />
           <Reveal className="mt-10">
             <TestimonialsSlider items={depoimentos} image={images.depoimentos} />
           </Reveal>
@@ -295,7 +307,13 @@ export default function HomePage() {
       {/* AVALIAÇÃO GRATUITA */}
       <section className="grid lg:grid-cols-2">
         <div className="relative aspect-[4/3] lg:aspect-auto">
-          <Image src={images.avaliacao} alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+          <Image
+            src={images.avaliacao}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+          />
         </div>
         <div className="bg-gradient-to-br from-rose-escuro to-framboesa px-6 py-14 text-white md:px-14 lg:py-20">
           <h2 className="font-display text-3xl font-medium md:text-4xl">Avaliação estética gratuita!</h2>

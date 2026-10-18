@@ -25,9 +25,7 @@ export function ExperienceSection() {
           />
         </Reveal>
         <Reveal delay={120}>
-          <p className="text-sm font-medium text-framboesa-escuro">
-            Ambiente &amp; experiência
-          </p>
+          <p className="text-sm font-medium text-framboesa-escuro">Ambiente &amp; experiência</p>
           <h2 className="mt-3 font-display text-3xl leading-tight text-grafite md:text-4xl">
             Um espaço para você desacelerar
           </h2>

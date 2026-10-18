@@ -25,7 +25,12 @@ export function Hero() {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.fromTo(".h-eyebrow", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.6 })
         .fromTo(".h-line", { yPercent: 110 }, { yPercent: 0, duration: 0.9, stagger: 0.12 }, "-=0.3")
-        .fromTo(".h-fade", { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.1 }, "-=0.5")
+        .fromTo(
+          ".h-fade",
+          { autoAlpha: 0, y: 18 },
+          { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.1 },
+          "-=0.5",
+        )
         .fromTo(".h-arch", { autoAlpha: 0, scale: 0.94 }, { autoAlpha: 1, scale: 1, duration: 1.1 }, 0.2)
         .fromTo(".h-card", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.8 }, "-=0.5");
 
@@ -51,8 +56,14 @@ export function Hero() {
 
   return (
     <section ref={root} className="relative overflow-hidden bg-marfim">
-      <div aria-hidden className="h-blob pointer-events-none absolute -right-40 top-0 h-[28rem] w-[28rem] rounded-full bg-aqua/25 blur-3xl" />
-      <div aria-hidden className="h-blob pointer-events-none absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-rose/15 blur-3xl" />
+      <div
+        aria-hidden
+        className="h-blob pointer-events-none absolute -right-40 top-0 h-[28rem] w-[28rem] rounded-full bg-aqua/25 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="h-blob pointer-events-none absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-rose/15 blur-3xl"
+      />
 
       <div className="container-wide relative grid items-center gap-10 pb-20 pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-6 lg:pb-28 lg:pt-16">
         <div>
@@ -68,7 +79,9 @@ export function Hero() {
             ))}
           </h1>
 
-          <p className="h-fade gsap-in mt-7 max-w-xl text-lg leading-relaxed text-grafite-suave">{site.manifesto}</p>
+          <p className="h-fade gsap-in mt-7 max-w-xl text-lg leading-relaxed text-grafite-suave">
+            {site.manifesto}
+          </p>
 
           <div className="h-fade gsap-in mt-9 flex flex-col gap-3 sm:flex-row">
             <Button href="/agendar" size="lg">
@@ -106,8 +119,13 @@ export function Hero() {
           <div className="h-card gsap-in absolute -bottom-6 left-2 right-2 rounded-2xl border border-marfim/60 bg-marfim/85 p-5 shadow-suave backdrop-blur-md sm:left-auto sm:right-[-1rem] sm:w-72">
             <p className="text-sm font-medium text-framboesa-escuro">Primeira visita</p>
             <p className="mt-1 font-display text-2xl text-grafite">Avaliação gratuita</p>
-            <p className="mt-1 text-sm text-grafite-suave">30 minutos para entender seu objetivo. Escolha dia e horário em 1 minuto.</p>
-            <Link href="/agendar?servico=avaliacao-gratuita" className="mt-3 inline-block text-sm font-medium text-framboesa hover:text-rose-escuro">
+            <p className="mt-1 text-sm text-grafite-suave">
+              30 minutos para entender seu objetivo. Escolha dia e horário em 1 minuto.
+            </p>
+            <Link
+              href="/agendar?servico=avaliacao-gratuita"
+              className="mt-3 inline-block text-sm font-medium text-framboesa hover:text-rose-escuro"
+            >
               Escolher horário →
             </Link>
           </div>

@@ -27,7 +27,11 @@ export function TreatmentFinder({ options, areas }: { options: Option[]; areas: 
         <p className="text-sm text-grafite-suave">Encontre o seu tratamento e agende em poucos cliques.</p>
       </div>
 
-      <form action="/agendar" method="get" className="mt-6 grid gap-4 md:grid-cols-[1fr_1fr_auto] md:items-end">
+      <form
+        action="/agendar"
+        method="get"
+        className="mt-6 grid gap-4 md:grid-cols-[1fr_1fr_auto] md:items-end"
+      >
         <div>
           <label htmlFor={areaId} className="mb-1.5 block text-sm text-grafite-suave">
             Área do tratamento

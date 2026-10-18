@@ -18,7 +18,14 @@ const quickLinks = [
 
 function CalendarIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+    <svg
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      aria-hidden
+    >
       <rect x="3.5" y="5" width="17" height="15" rx="2.5" />
       <path d="M3.5 9.5h17M8 3v4M16 3v4" strokeLinecap="round" />
     </svg>
@@ -49,78 +56,80 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-blush-borda bg-white/95 backdrop-blur-md">
-      <div className="container-wide flex items-center justify-between gap-4 py-2.5">
-        <div className="flex items-center gap-6">
-          {/* Logo real da marca — public/images/logo/logo-espaco-neia.jpg */}
-          <Link href="/" className="flex items-center" aria-label="Espaço Néia — página inicial">
-            <Image
-              src="/images/logo/logo-espaco-neia.jpg"
-              alt="Espaço Néia Beleza e Estética"
-              width={320}
-              height={320}
-              priority
-              className="h-14 w-auto object-contain mix-blend-multiply md:h-16"
-            />
-          </Link>
-          <span className="hidden h-10 w-px bg-blush-borda lg:block" aria-hidden />
-          <nav aria-label="Atalhos" className="hidden items-center gap-2.5 lg:flex">
-            {quickLinks.map((q) => (
-              <Link
-                key={q.href}
-                href={q.href}
-                className={cn(
-                  "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                  q.filled
-                    ? "bg-framboesa text-white hover:bg-framboesa-escuro"
-                    : "bg-blush text-framboesa hover:bg-blush-borda",
-                  pathname === q.href && !q.filled && "ring-1 ring-framboesa/40",
-                )}
-              >
-                {q.filled && <CalendarIcon />}
-                {q.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+    <>
+      <header className="sticky top-0 z-50 border-b border-blush-borda bg-white/95 backdrop-blur-md">
+        <div className="container-wide flex items-center justify-between gap-4 py-2.5">
+          <div className="flex items-center gap-6">
+            {/* Logo real da marca — public/images/logo/logo-espaco-neia.jpg */}
+            <Link href="/" className="flex items-center" aria-label="Espaço Néia — página inicial">
+              <Image
+                src="/images/logo/logo-espaco-neia.jpg"
+                alt="Espaço Néia Beleza e Estética"
+                width={320}
+                height={320}
+                priority
+                className="h-14 w-auto object-contain mix-blend-multiply md:h-16"
+              />
+            </Link>
+            <span className="hidden h-10 w-px bg-blush-borda lg:block" aria-hidden />
+            <nav aria-label="Atalhos" className="hidden items-center gap-2.5 lg:flex">
+              {quickLinks.map((q) => (
+                <Link
+                  key={q.href}
+                  href={q.href}
+                  className={cn(
+                    "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                    q.filled
+                      ? "bg-framboesa text-white hover:bg-framboesa-escuro"
+                      : "bg-blush text-framboesa hover:bg-blush-borda",
+                    pathname === q.href && !q.filled && "ring-1 ring-framboesa/40",
+                  )}
+                >
+                  {q.filled && <CalendarIcon />}
+                  {q.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
 
-        <div className="flex items-center gap-2.5">
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Falar no WhatsApp"
-            className="hidden h-11 w-11 items-center justify-center rounded-full bg-framboesa text-white transition-colors hover:bg-framboesa-escuro sm:flex"
-          >
-            <svg viewBox="0 0 32 32" className="h-5 w-5 fill-current" aria-hidden>
-              <path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm5.4 14.6c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.8-.9-2.9-1.6-4.1-3.6-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.8.5-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4z" />
-            </svg>
-          </a>
-          <Link
-            href="/agendar"
-            className="inline-flex h-11 items-center gap-2 rounded-full bg-framboesa px-4 text-sm font-medium text-white lg:hidden"
-          >
-            <CalendarIcon />
-            <span className="hidden min-[380px]:inline">Agendar</span>
-          </Link>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="inline-flex h-11 items-center gap-3 rounded-full border border-framboesa/50 px-5 text-sm font-medium text-framboesa transition-colors hover:bg-blush"
-            aria-expanded={open}
-            aria-controls="menu-principal"
-          >
-            <span className="space-y-1" aria-hidden>
-              <span className="block h-0.5 w-4 bg-current" />
-              <span className="block h-0.5 w-4 bg-current" />
-              <span className="block h-0.5 w-4 bg-current" />
-            </span>
-            Menu
-          </button>
+          <div className="flex items-center gap-2.5">
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Falar no WhatsApp"
+              className="hidden h-11 w-11 items-center justify-center rounded-full bg-framboesa text-white transition-colors hover:bg-framboesa-escuro sm:flex"
+            >
+              <svg viewBox="0 0 32 32" className="h-5 w-5 fill-current" aria-hidden>
+                <path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm5.4 14.6c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.8-.9-2.9-1.6-4.1-3.6-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.8.5-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4z" />
+              </svg>
+            </a>
+            <Link
+              href="/agendar"
+              className="inline-flex h-11 items-center gap-2 rounded-full bg-framboesa px-4 text-sm font-medium text-white lg:hidden"
+            >
+              <CalendarIcon />
+              <span className="hidden min-[380px]:inline">Agendar</span>
+            </Link>
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              className="inline-flex h-11 items-center gap-3 rounded-full border border-framboesa/50 px-5 text-sm font-medium text-framboesa transition-colors hover:bg-blush"
+              aria-expanded={open}
+              aria-controls="menu-principal"
+            >
+              <span className="space-y-1" aria-hidden>
+                <span className="block h-0.5 w-4 bg-current" />
+                <span className="block h-0.5 w-4 bg-current" />
+                <span className="block h-0.5 w-4 bg-current" />
+              </span>
+              Menu
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Menu lateral (todas as telas) */}
+      {/* Menu lateral (todas as telas). Fica fora do <header>: o backdrop-blur dele prenderia o position:fixed. */}
       <div
         className={cn(
           "fixed inset-0 z-[60] transition-opacity duration-300",
@@ -167,7 +176,9 @@ export function Header() {
                   )}
                 >
                   {item.label}
-                  <span aria-hidden className="text-framboesa">→</span>
+                  <span aria-hidden className="text-framboesa">
+                    →
+                  </span>
                 </Link>
               </li>
             ))}
@@ -206,6 +217,6 @@ export function Header() {
           </div>
         </nav>
       </div>
-    </header>
+    </>
   );
 }

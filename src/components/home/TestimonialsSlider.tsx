@@ -17,7 +17,10 @@ export function TestimonialsSlider({ items, image }: { items: Item[]; image: str
     <div className="grid overflow-hidden rounded-2xl lg:grid-cols-2">
       <div className="flex flex-col justify-between bg-blush px-6 py-10 md:px-12">
         <div>
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white font-display text-2xl text-framboesa" aria-hidden>
+          <span
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-white font-display text-2xl text-framboesa"
+            aria-hidden
+          >
             “
           </span>
           <div aria-live="polite">
@@ -51,7 +54,10 @@ export function TestimonialsSlider({ items, image }: { items: Item[]; image: str
                 <span
                   key={k}
                   aria-hidden
-                  className={cn("h-2 rounded-full bg-framboesa transition-all", k === i ? "w-5" : "w-2 opacity-30")}
+                  className={cn(
+                    "h-2 rounded-full bg-framboesa transition-all",
+                    k === i ? "w-5" : "w-2 opacity-30",
+                  )}
                 />
               ))}
               <button
