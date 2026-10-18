@@ -28,13 +28,19 @@ const config: Config = {
         // Azul petróleo — cor do traço/tipografia da logo (contraste, headings escuros)
         petrol: "#2C5B6B",
         "petrol-suave": "#436F7E",
+        // Framboesa — rosé profundo da marca: CTAs e painéis de destaque (contraste AA com branco)
+        framboesa: "#B4537A",
+        "framboesa-escuro": "#94405F",
+        // Blush — faixas e painéis claros
+        blush: "#FCEFF2",
+        "blush-borda": "#F3DCE3",
         // Grafite (texto de leitura)
         grafite: "#2A2B2C",
         "grafite-suave": "#5B5D5E",
       },
       fontFamily: {
         // Aplicadas via next/font em layout.tsx (variáveis CSS)
-        display: ["var(--font-display)", "Georgia", "serif"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       letterSpacing: {

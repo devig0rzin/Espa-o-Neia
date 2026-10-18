@@ -19,7 +19,7 @@ export default function ServicosPage() {
       <Section className="bg-gradient-to-b from-creme to-marfim pb-10">
         <div className="container-narrow text-center">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">Nossos tratamentos</p>
+            <p className="text-sm font-medium text-framboesa">Nossos tratamentos</p>
             <h1 className="mt-4 font-display text-4xl leading-tight text-grafite md:text-5xl">
               Cuidado completo, do rosto ao corpo
             </h1>
@@ -58,7 +58,7 @@ export default function ServicosPage() {
               >
                 <div className="flex items-center justify-between">
                   <h3 className="font-display text-xl text-grafite">{c.name}</h3>
-                  <span className="text-rose transition-transform group-hover:translate-x-1" aria-hidden>
+                  <span className="text-framboesa transition-transform group-hover:translate-x-1" aria-hidden>
                     →
                   </span>
                 </div>
@@ -71,7 +71,7 @@ export default function ServicosPage() {
                       {p.name}
                       {p.regulated && (
                         <span
-                          className="h-1.5 w-1.5 rounded-full bg-rose"
+                          className="h-1.5 w-1.5 rounded-full bg-framboesa"
                           aria-label="Indicação profissional"
                           title="Indicação profissional"
                         />
@@ -85,7 +85,7 @@ export default function ServicosPage() {
         </div>
 
         <p className="mx-auto mt-10 flex max-w-2xl items-center justify-center gap-2 text-center text-xs text-grafite-suave">
-          <span className="h-1.5 w-1.5 rounded-full bg-rose" aria-hidden /> Procedimentos com indicação e
+          <span className="h-1.5 w-1.5 rounded-full bg-framboesa" aria-hidden /> Procedimentos com indicação e
           execução restritas a profissional habilitado, mediante avaliação individual.
         </p>
       </Section>

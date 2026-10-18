@@ -63,7 +63,7 @@ export function Hero() {
           <h1 className="font-display text-[2.6rem] leading-[1.04] text-grafite sm:text-6xl lg:text-7xl">
             {lines.map((l, i) => (
               <span key={l} className="block overflow-hidden pb-1">
-                <span className={`h-line block ${i === 1 ? "italic text-rose" : ""}`}>{l}</span>
+                <span className={`h-line block ${i === 1 ? "italic text-framboesa" : ""}`}>{l}</span>
               </span>
             ))}
           </h1>
@@ -82,7 +82,7 @@ export function Hero() {
           <ul className="h-fade gsap-in mt-10 flex flex-wrap gap-x-7 gap-y-2">
             {badges.map((b) => (
               <li key={b} className="flex items-center gap-2 text-sm text-grafite-suave">
-                <span className="h-1.5 w-1.5 rounded-full bg-rose" aria-hidden />
+                <span className="h-1.5 w-1.5 rounded-full bg-framboesa" aria-hidden />
                 {b}
               </li>
             ))}
@@ -104,10 +104,10 @@ export function Hero() {
           </div>
 
           <div className="h-card gsap-in absolute -bottom-6 left-2 right-2 rounded-2xl border border-marfim/60 bg-marfim/85 p-5 shadow-suave backdrop-blur-md sm:left-auto sm:right-[-1rem] sm:w-72">
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua-escuro">Primeira visita</p>
+            <p className="text-sm font-medium text-framboesa-escuro">Primeira visita</p>
             <p className="mt-1 font-display text-2xl text-grafite">Avaliação gratuita</p>
             <p className="mt-1 text-sm text-grafite-suave">30 minutos para entender seu objetivo. Escolha dia e horário em 1 minuto.</p>
-            <Link href="/agendar?servico=avaliacao-gratuita" className="mt-3 inline-block text-sm font-medium text-rose hover:text-rose-escuro">
+            <Link href="/agendar?servico=avaliacao-gratuita" className="mt-3 inline-block text-sm font-medium text-framboesa hover:text-rose-escuro">
               Escolher horário →
             </Link>
           </div>

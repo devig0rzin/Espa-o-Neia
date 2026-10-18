@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-marfim text-grafite font-sans antialiased;
+    @apply bg-white text-grafite font-sans antialiased;
   }
 
   ::selection {
@@ -27,7 +27,21 @@
     @apply mx-auto w-full max-w-3xl px-6;
   }
   .container-wide {
-    @apply mx-auto w-full max-w-6xl px-6;
+    @apply mx-auto w-full max-w-7xl px-5 md:px-8;
+  }
+
+  /* Faixa de rolagem horizontal sem barra visível (carrosséis) */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Padrão pontilhado decorativo (mapa/localização) */
+  .dots-rose {
+    background-image: radial-gradient(theme("colors.rose") 1.6px, transparent 1.7px);
+    background-size: 14px 14px;
   }
 
   /* Filete água-marinha decorativo (assinatura visual da marca) */

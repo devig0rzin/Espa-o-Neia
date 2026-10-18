@@ -27,7 +27,7 @@ export default function CampanhasPage() {
       <Section className="bg-gradient-to-b from-creme to-marfim">
         <div className="container-narrow text-center">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">
+            <p className="text-sm font-medium text-framboesa">
               Campanhas &amp; protocolos
             </p>
             <h1 className="mt-4 font-display text-4xl leading-tight text-grafite md:text-5xl">

@@ -1,56 +1,68 @@
 import Image from "next/image";
-import { Hero } from "@/components/home/Hero";
+import Link from "next/link";
+import { HeroSlider } from "@/components/home/HeroSlider";
+import { TreatmentsCarousel, type TreatmentItem } from "@/components/home/TreatmentsCarousel";
+import { TreatmentFinder } from "@/components/home/TreatmentFinder";
+import { TestimonialsSlider } from "@/components/home/TestimonialsSlider";
 import { Journey } from "@/components/home/Journey";
-import { Marquee } from "@/components/motion/Marquee";
-import { ExperienceSection } from "@/components/home/ExperienceSection";
-import { RealResultsGallery } from "@/components/home/RealResultsGallery";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { CategoryCard } from "@/components/ui/CategoryCard";
 import { CampaignCard } from "@/components/ui/CampaignCard";
-import { FaqAccordion } from "@/components/ui/FaqAccordion";
-import { CtaBanner } from "@/components/ui/CtaBanner";
+import { FaqGrid } from "@/components/ui/FaqGrid";
 import { Button } from "@/components/ui/Button";
 import { Placeholder } from "@/components/ui/Placeholder";
 import { FaqJsonLd } from "@/components/seo/JsonLd";
-import { categories } from "@/data/categories";
 import { campaigns } from "@/data/campaigns";
 import { liveCampaigns } from "@/lib/campaigns";
 import { faq } from "@/data/faq";
 import { testimonials } from "@/data/testimonials";
+import { services } from "@/data/services";
+import { images } from "@/data/images";
 import { visible } from "@/lib/drafts";
+import { canShowPrices } from "@/lib/services-source";
+import { formatDuration, formatPrice } from "@/lib/booking";
 import { whatsappLink, site } from "@/data/site";
 
+/** Categoria do serviço (nome curto) → página da categoria. */
+const categorySlug: Record<string, string> = {
+  "Estética facial": "estetica-facial",
+  "Emagrecimento e modelagem": "emagrecimento-e-modelagem-corporal",
+  "Estética corporal": "estetica-corporal",
+  "Beleza e cuidados": "beleza-e-cuidados",
+};
+const tabs = Object.keys(categorySlug);
+
+const destaques = [
+  {
+    title: "Avaliação gratuita",
+    text: "Antes de qualquer protocolo, uma conversa individual para entender o seu objetivo.",
+    href: "/agendar?servico=avaliacao-gratuita",
+  },
+  {
+    title: "Tudo em um só lugar",
+    text: "Estética facial, corporal, emagrecimento e beleza no mesmo endereço, em Cotia.",
+    href: "/servicos",
+  },
+  {
+    title: "Agenda online",
+    text: "Escolha o tratamento, o dia e o horário pelo site e receba a confirmação na hora.",
+    href: "/agendar",
+  },
+];
+
+const motivos = [
+  { title: "Ambiente acolhedor", text: "Um espaço reservado e confortável, pensado para o seu bem-estar." },
+  { title: "Tecnologia com critério", text: "Equipamentos e técnicas aplicados com responsabilidade, a partir da avaliação." },
+  { title: "Atendimento próximo", text: "Acompanhamento em cada sessão, com orientação para cuidar de você em casa." },
+];
+
 const pilares = [
-  {
-    title: "Estética avançada",
-    text: "Protocolos faciais e corporais com tecnologia aplicada conforme avaliação.",
-  },
-  {
-    title: "Emagrecimento & modelagem",
-    text: "Planos personalizados para o contorno corporal e o bem-estar.",
-  },
-  { title: "Beleza & cuidados", text: "Sobrancelhas, cílios e cuidados de beleza com padrão de clínica." },
-  { title: "Bem-estar", text: "Momentos de autocuidado em um ambiente clean e acolhedor." },
+  { word: "Beleza", image: images.sobre.beleza },
+  { word: "Autoestima", image: images.sobre.autoestima },
+  { word: "Bem-estar", image: images.sobre.bemEstar },
 ];
 
-const marqueeItems = ["Limpeza de pele", "Criolipólise", "Drenagem linfática", "Micropigmentação", "Massagem relaxante", "Lipocavitação", "Cílios", "Manicure & pedicure"];
-
-const diferenciais = [
-  {
-    title: "Avaliação individual",
-    text: "Nada de protocolos genéricos. Tudo começa entendendo você e o seu objetivo.",
-  },
-  {
-    title: "Tecnologia e técnica",
-    text: "Equipamentos e técnicas aplicados com critério e responsabilidade.",
-  },
-  { title: "Acolhimento real", text: "Atendimento discreto, humano e atencioso do início ao fim." },
-  { title: "Transparência", text: "Comunicação clara sobre expectativas, frequência e cuidados." },
-  { title: "Ambiente premium", text: "Um espaço pensado para o seu conforto e bem-estar." },
-  { title: "Localização", text: "No coração de Cotia, atendendo Granja Viana e toda a região." },
-];
-
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.mapEmbedQuery)}`;
 
 // Revalida a cada 1h: campanhas vencidas saem do ar sem novo deploy (no máximo ~1h após o fim do dia).
 export const revalidate = 3600;
@@ -59,181 +71,114 @@ export default function HomePage() {
   const depoimentos = visible(testimonials);
   const perguntas = visible(faq);
   const campanhas = liveCampaigns(campaigns);
+  const mostrarPrecos = canShowPrices();
+
+  const tratamentos: TreatmentItem[] = services
+    .filter((s) => s.priceType !== "gratuito" && categorySlug[s.category])
+    .map((s) => ({
+      id: s.id,
+      name: s.name,
+      category: s.category,
+      categorySlug: categorySlug[s.category],
+      image: images.servicos[s.id] ?? images.servicoPadrao,
+      duration: formatDuration(s.durationMin),
+      priceLabel: mostrarPrecos ? formatPrice(s) : null,
+      needsEvaluation: s.bookable === "avaliacao",
+    }));
+  const opcoes = services
+    .filter((s) => s.priceType !== "gratuito")
+    .map((s) => ({ id: s.id, name: s.name, category: s.category }));
+
   return (
     <>
-      <Hero />
-      <Marquee items={marqueeItems} />
+      <HeroSlider />
 
-      {/* AUTORIDADE & ACOLHIMENTO */}
-      <Section container="narrow" className="text-center">
+      {/* DESTAQUES */}
+      <section className="border-b border-blush-borda">
+        <div className="container-wide grid divide-y divide-blush-borda md:grid-cols-3 md:divide-x md:divide-y-0">
+          {destaques.map((d, i) => (
+            <Reveal key={d.title} delay={i * 80} className="py-8 md:px-8 md:py-10 md:first:pl-0">
+              <h2 className="font-display text-xl font-semibold text-petrol">{d.title}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-grafite-suave">{d.text}</p>
+              <Link href={d.href} className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-framboesa hover:gap-3">
+                Saiba mais <span aria-hidden>→</span>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* TRATAMENTOS MAIS PROCURADOS */}
+      <Section id="tratamentos" className="pb-10 md:pb-14">
+        <SectionHeading eyebrow="Tratamentos" title="Tratamentos mais procurados no Espaço Néia" />
+        <TreatmentsCarousel items={tratamentos} tabs={tabs} />
+      </Section>
+
+      {/* BUSCA POR TRATAMENTO */}
+      <div className="container-wide pb-16 md:pb-24">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">
-            Bem-vinda ao Espaço Néia
-          </p>
-          <p className="mt-6 font-display text-2xl leading-relaxed text-grafite md:text-3xl">
-            {site.manifesto}
-          </p>
-          <div className="rule-gold mx-auto mt-8" />
+          <TreatmentFinder options={opcoes} areas={tabs} />
         </Reveal>
-      </Section>
+      </div>
 
-      {/* SOLUÇÕES EM UM SÓ LUGAR */}
-      <Section className="bg-creme">
-        <SectionHeading
-          eyebrow="Soluções em um só lugar"
-          title="Tudo o que a sua beleza precisa, com o cuidado que você merece"
-          description="Reunimos diferentes frentes de cuidado para que você encontre, em um só endereço, atenção completa à sua estética e ao seu bem-estar."
-        />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {pilares.map((p, i) => (
-            <Reveal key={p.title} delay={i * 80}>
-              <div className="flex h-full flex-col rounded-3xl bg-marfim p-7 shadow-card">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full border border-aqua/50 font-display text-lg text-rose">
-                  {i + 1}
-                </div>
-                <h3 className="font-display text-xl text-grafite">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-grafite-suave">{p.text}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* CATEGORIAS DE TRATAMENTO */}
-      <Section>
-        <SectionHeading
-          eyebrow="Tratamentos"
-          title="Escolha por onde começar"
-          description="Cada categoria reúne protocolos pensados para objetivos diferentes. Explore e agende a sua avaliação."
-        />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((c, i) => (
-            <Reveal key={c.slug} delay={i * 80}>
-              <CategoryCard category={c} />
-            </Reveal>
-          ))}
-        </div>
-        <div className="mt-10 text-center">
-          <Button href="/servicos" variant="secondary" size="lg">
-            Ver todos os tratamentos
-          </Button>
-        </div>
-      </Section>
-
-      {/* POR QUE ESCOLHER O ESPAÇO NÉIA */}
-      <Section className="bg-grafite text-marfim">
-        <SectionHeading
-          eyebrow="Diferenciais"
-          title="Por que escolher o Espaço Néia"
-          className="[&_h2]:text-marfim [&_p]:text-marfim/70"
-        />
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {diferenciais.map((d, i) => (
-            <Reveal key={d.title} delay={i * 70}>
-              <div className="h-full rounded-3xl border border-marfim/15 bg-marfim/5 p-7">
-                <h3 className="font-display text-xl text-aqua-claro">{d.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-marfim/75">{d.text}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* JORNADA — seção fixada com animação no scroll */}
-      <Journey />
-
-      {/* PROTOCOLOS EXCLUSIVOS (destaque premium) */}
-      <Section className="bg-gradient-to-br from-nude/60 via-creme to-marfim">
+      {/* LOCALIZAÇÃO */}
+      <Section className="pt-4 md:pt-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">Protocolos exclusivos</p>
-            <h2 className="mt-3 font-display text-3xl leading-tight text-grafite md:text-4xl">
-              Experiências de cuidado pensadas nos mínimos detalhes
-            </h2>
-            <p className="mt-4 leading-relaxed text-grafite-suave">
-              Nossos protocolos combinam técnicas, tecnologia e um roteiro de atendimento acolhedor, para que
-              cada visita seja um momento só seu. Personalização é o que nos define.
-            </p>
-            <ul className="mt-6 space-y-3 text-sm text-grafite">
-              {[
-                "Roteiro de cuidado individualizado",
-                "Ambiente reservado e confortável",
-                "Orientação para prolongar os resultados em casa",
-              ].map((t) => (
-                <li key={t} className="flex items-center gap-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-rose" aria-hidden /> {t}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {campanhas.length > 0 && <Button href="/campanhas">Ver protocolos em destaque</Button>}
-              <Button href={whatsappLink()} external variant="secondary">
-                Falar no WhatsApp
-              </Button>
+            <div className="relative mx-auto aspect-square w-full max-w-md">
+              <div className="dots-rose absolute inset-0 rounded-full opacity-60 [mask-image:radial-gradient(circle,black_55%,transparent_72%)]" />
+              <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
+                <span className="flex h-28 w-28 flex-col items-center justify-center rounded-full bg-white shadow-suave">
+                  <svg viewBox="0 0 24 24" className="h-9 w-9 text-framboesa" fill="currentColor" aria-hidden>
+                    <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
+                  </svg>
+                  <span className="mt-1 text-xs font-semibold text-framboesa">Espaço Néia</span>
+                </span>
+              </div>
+              <div className="absolute bottom-6 left-2 md:left-0">
+                <p className="font-display text-4xl font-semibold text-framboesa">Cotia</p>
+                <p className="text-sm text-grafite-suave">e Granja Viana</p>
+              </div>
             </div>
           </Reveal>
           <Reveal delay={120}>
-            {/* Imagem ilustrativa (gerada por IA) — ver public/images/ilustrativas/ */}
-            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-nude-escuro/40 shadow-suave">
-              <Image
-                src="/images/ilustrativas/micropigmentacao-sobrancelha.png"
-                alt="Ilustração de procedimento de precisão no Espaço Néia"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
+            <SectionHeading
+              align="left"
+              title="Pertinho de você, no coração de Cotia"
+              description={`${site.address.street}, ${site.address.district}. Atendemos Cotia, Granja Viana e região.`}
+            />
+            <ol className="mt-8 divide-y divide-blush-borda border-y border-blush-borda">
+              {motivos.map((m, i) => (
+                <li key={m.title} className="flex gap-4 py-4">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blush text-sm font-semibold text-framboesa">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <p className="font-medium text-grafite">{m.title}</p>
+                    <p className="text-sm text-grafite-suave">{m.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button href={mapsUrl} external>
+                Como chegar
+              </Button>
+              <Button href="/contato" variant="secondary">
+                Horários e contato
+              </Button>
             </div>
           </Reveal>
         </div>
       </Section>
 
-      <ExperienceSection />
-
-      {/* CAMPANHAS EM DESTAQUE — some quando não há campanha vigente */}
-      {campanhas.length > 0 && (
-        <Section>
-          <SectionHeading
-            eyebrow="Campanhas"
-            title="Condições especiais em destaque"
-            description="Protocolos e pacotes selecionados para você começar. Consulte disponibilidade e condições atualizadas."
-          />
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {campanhas.slice(0, 3).map((c, i) => (
-              <Reveal key={c.id} delay={i * 80}>
-                <CampaignCard campaign={c} />
-              </Reveal>
-            ))}
-          </div>
-        </Section>
-      )}
-
-      <RealResultsGallery />
-
       {/* DEPOIMENTOS — só aparece com depoimentos aprovados (ou nos previews) */}
       {depoimentos.length > 0 && (
-        <Section>
-          <SectionHeading
-            eyebrow="Quem cuida da beleza aqui"
-            title="Histórias de quem confia no Espaço Néia"
-          />
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {depoimentos.map((t, i) => (
-              <Reveal key={i} delay={i * 80}>
-                <figure className="flex h-full flex-col rounded-3xl bg-marfim p-7 shadow-card">
-                  <div className="mb-3 text-aqua" aria-hidden>
-                    ★★★★★
-                  </div>
-                  <blockquote className="flex-1 text-sm leading-relaxed text-grafite-suave">
-                    “{t.text}”
-                  </blockquote>
-                  <figcaption className="mt-5 border-t border-nude-escuro/40 pt-4 text-sm">
-                    <span className="font-medium text-grafite">{t.name}</span>
-                    <span className="block text-grafite-suave">{t.city}</span>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
+        <Section className="pt-0 md:pt-0">
+          <SectionHeading eyebrow="Quem cuida da beleza aqui" title="Histórias de quem confia no Espaço Néia" />
+          <Reveal className="mt-10">
+            <TestimonialsSlider items={depoimentos} image={images.depoimentos} />
+          </Reveal>
           {depoimentos.some((t) => t.status === "draft") && (
             <Placeholder label="Depoimentos" className="mx-auto mt-8 max-w-2xl text-center">
               Depoimentos fictícios, visíveis só no preview. Substitua pelo texto real autorizado pelas
@@ -244,11 +189,100 @@ export default function HomePage() {
         </Section>
       )}
 
+      {/* FAIXA AGENDE AGORA */}
+      <section className="container-wide">
+        <Reveal>
+          <div className="grid overflow-hidden rounded-2xl lg:grid-cols-[1fr_1.2fr]">
+            <div className="flex flex-col justify-center bg-gradient-to-br from-rose-escuro to-framboesa px-8 py-12 text-white md:px-12">
+              <h2 className="text-balance font-display text-3xl font-light leading-tight md:text-4xl">
+                Agende agora a sua experiência no <strong className="font-semibold">Espaço Néia</strong>
+              </h2>
+              <p className="mt-3 text-white/90">Viva o seu momento de autocuidado.</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button href="/agendar" variant="white">
+                  Agendar agora
+                </Button>
+                <Button href={whatsappLink()} external variant="outline-light">
+                  Falar no WhatsApp
+                </Button>
+              </div>
+            </div>
+            <div className="relative aspect-[16/10] lg:aspect-auto">
+              <Image
+                src={images.bannerAgende}
+                alt=""
+                fill
+                sizes="(min-width: 1024px) 55vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* SOBRE / PROPÓSITO */}
+      <Section>
+        <SectionHeading
+          eyebrow="Sobre nós"
+          title="Cuidar da sua beleza é o nosso propósito"
+          description="Acreditamos que beleza e autoestima caminham juntas. Nosso compromisso é com o seu bem-estar em cada detalhe, com técnica, tecnologia e um atendimento acolhedor."
+        />
+        <div className="mt-12 grid gap-4 sm:grid-cols-3">
+          {pilares.map((p, i) => (
+            <Reveal key={p.word} delay={i * 90}>
+              <div className="group relative aspect-[3/4] overflow-hidden rounded-xl">
+                <Image
+                  src={p.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-grafite/50 via-transparent to-transparent" />
+                <p className="absolute inset-x-0 bottom-8 text-center font-display text-3xl font-semibold uppercase tracking-wide text-white md:text-4xl">
+                  {p.word}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-12 flex flex-col gap-6 border-b border-blush-borda pb-12 md:flex-row md:items-center md:justify-between">
+          <p className="font-display text-2xl font-semibold text-petrol md:max-w-xs">
+            Tudo o que a sua beleza precisa, em um só lugar
+          </p>
+          <p className="max-w-xl text-sm leading-relaxed text-grafite-suave">{site.manifesto}</p>
+          <Button href="/sobre" variant="secondary">
+            Saiba mais
+          </Button>
+        </div>
+      </Section>
+
+      {/* JORNADA — seção fixada com animação no scroll */}
+      <Journey />
+
+      {/* CAMPANHAS EM DESTAQUE — some quando não há campanha vigente */}
+      {campanhas.length > 0 && (
+        <Section className="bg-blush">
+          <SectionHeading
+            eyebrow="Campanhas"
+            title="Condições especiais em destaque"
+            description="Protocolos e pacotes selecionados para você começar. Consulte disponibilidade e condições atualizadas."
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {campanhas.slice(0, 3).map((c, i) => (
+              <Reveal key={c.id} delay={i * 80}>
+                <CampaignCard campaign={c} />
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+      )}
+
       {/* FAQ */}
-      <Section container="narrow">
-        <SectionHeading eyebrow="Dúvidas frequentes" title="Tudo o que você precisa saber antes de agendar" />
-        <div className="mt-12">
-          <FaqAccordion items={perguntas.slice(0, 5)} />
+      <Section>
+        <SectionHeading eyebrow="FAQ" title="Dúvidas frequentes" />
+        <div className="mt-10">
+          <FaqGrid items={perguntas.slice(0, 8)} />
         </div>
         <div className="mt-8 text-center">
           <Button href="/faq" variant="ghost">
@@ -258,7 +292,40 @@ export default function HomePage() {
         <FaqJsonLd items={perguntas} />
       </Section>
 
-      <CtaBanner />
+      {/* AVALIAÇÃO GRATUITA */}
+      <section className="grid lg:grid-cols-2">
+        <div className="relative aspect-[4/3] lg:aspect-auto">
+          <Image src={images.avaliacao} alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+        </div>
+        <div className="bg-gradient-to-br from-rose-escuro to-framboesa px-6 py-14 text-white md:px-14 lg:py-20">
+          <h2 className="font-display text-3xl font-medium md:text-4xl">Avaliação estética gratuita!</h2>
+          <p className="mt-3 max-w-md text-white/90">
+            É muito simples: escolha o melhor dia e horário e receba a confirmação na hora.
+          </p>
+          <ol className="mt-8 space-y-4">
+            {[
+              "Escolha “Avaliação gratuita” ou o tratamento que deseja",
+              "Selecione o dia e o horário livres na agenda",
+              "Informe nome e WhatsApp e pronto: horário confirmado",
+            ].map((passo, i) => (
+              <li key={passo} className="flex items-center gap-4">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 text-sm font-semibold">
+                  {i + 1}
+                </span>
+                <span className="text-sm md:text-base">{passo}</span>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Button href="/agendar?servico=avaliacao-gratuita" variant="white" size="lg">
+              Escolher dia e horário
+            </Button>
+            <Button href={whatsappLink()} external variant="outline-light" size="lg">
+              Prefiro o WhatsApp
+            </Button>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

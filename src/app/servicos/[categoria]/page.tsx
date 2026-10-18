@@ -46,7 +46,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ cate
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
             <nav aria-label="Trilha de navegação" className="mb-5 text-xs text-grafite-suave">
-              <Link href="/servicos" className="hover:text-rose">
+              <Link href="/servicos" className="hover:text-framboesa">
                 Tratamentos
               </Link>
               <span className="mx-2" aria-hidden>
@@ -54,7 +54,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ cate
               </span>
               <span className="text-grafite">{cat.name}</span>
             </nav>
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">{cat.eyebrow}</p>
+            <p className="text-sm font-medium text-framboesa">{cat.eyebrow}</p>
             <h1 className="mt-3 font-display text-4xl leading-tight text-grafite md:text-5xl">
               {cat.heroTitle}
             </h1>
@@ -98,7 +98,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ cate
         <ul className="mt-8 grid gap-4 sm:grid-cols-2">
           {cat.desires.map((d) => (
             <li key={d} className="flex items-start gap-3 rounded-2xl bg-creme p-5 text-sm text-grafite">
-              <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-rose" aria-hidden />
+              <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-framboesa" aria-hidden />
               {d}
             </li>
           ))}
@@ -117,7 +117,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ cate
                   <div className="flex flex-wrap items-center gap-2">
                     <h3 className="font-display text-xl text-grafite">{p.name}</h3>
                     {p.regulated && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-rose/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-rose">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-rose/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-framboesa">
                         Indicação profissional
                       </span>
                     )}

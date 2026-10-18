@@ -64,7 +64,7 @@ export function ContactForm() {
 
   const fieldClass = (name: keyof ContactFields) =>
     cn(
-      "w-full rounded-xl border bg-marfim px-4 py-3 text-sm text-grafite placeholder:text-grafite-suave/60 focus:border-rose focus:outline-none focus:ring-2 focus:ring-rose/30",
+      "w-full rounded-xl border bg-marfim px-4 py-3 text-sm text-grafite placeholder:text-grafite-suave/60 focus:border-framboesa focus:outline-none focus:ring-2 focus:ring-rose/30",
       errors[name] ? "border-red-700" : "border-nude-escuro/60",
     );
 
@@ -178,7 +178,7 @@ export function ContactForm() {
           />
           <label htmlFor="consent" className="text-xs leading-relaxed text-grafite-suave">
             Autorizo o contato do Espaço Néia pelos dados informados e li a{" "}
-            <a href="/politica-de-privacidade" className="text-rose underline">
+            <a href="/politica-de-privacidade" className="text-framboesa underline">
               Política de Privacidade
             </a>
             . Meus dados serão usados apenas para responder a esta solicitação.
@@ -189,13 +189,13 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-rose px-8 py-4 text-base font-medium tracking-wide text-marfim shadow-suave transition-all duration-300 hover:bg-rose-escuro focus-visible:ring-2 focus-visible:ring-rose focus-visible:ring-offset-2"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-framboesa px-8 py-4 text-base font-medium tracking-wide text-marfim shadow-suave transition-all duration-300 hover:bg-framboesa-escuro focus-visible:ring-2 focus-visible:ring-framboesa focus-visible:ring-offset-2"
       >
         Solicitar atendimento
       </button>
 
       {sentUrl && (
-        <p className="text-center text-sm text-rose" role="status">
+        <p className="text-center text-sm text-framboesa" role="status">
           Abrindo o WhatsApp com os seus dados… Se não abrir,{" "}
           <a href={sentUrl} target="_blank" rel="noopener noreferrer" className="underline">
             toque aqui para enviar a mensagem

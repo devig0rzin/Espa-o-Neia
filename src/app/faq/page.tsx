@@ -21,7 +21,7 @@ export default function FaqPage() {
       <Section className="bg-gradient-to-b from-creme to-marfim pb-8">
         <div className="container-narrow text-center">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">Perguntas frequentes</p>
+            <p className="text-sm font-medium text-framboesa">Perguntas frequentes</p>
             <h1 className="mt-4 font-display text-4xl leading-tight text-grafite md:text-5xl">
               Dúvidas? A gente responde
             </h1>

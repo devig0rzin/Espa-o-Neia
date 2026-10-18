@@ -1,16 +1,17 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "ghost" | "aqua" | "petrol" | "outline-light";
+type Variant = "primary" | "secondary" | "ghost" | "aqua" | "petrol" | "outline-light" | "white";
 type Size = "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-wide transition-all duration-300 focus-visible:ring-2 focus-visible:ring-rose focus-visible:ring-offset-2";
+  "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-wide transition-all duration-300 focus-visible:ring-2 focus-visible:ring-framboesa focus-visible:ring-offset-2";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-rose text-marfim shadow-suave hover:bg-rose-escuro hover:-translate-y-0.5",
-  secondary: "border border-grafite/20 bg-transparent text-grafite hover:border-rose hover:text-rose",
-  ghost: "text-grafite hover:text-rose",
+  primary: "bg-framboesa text-white hover:bg-framboesa-escuro hover:-translate-y-0.5",
+  secondary: "border border-framboesa/40 bg-white text-framboesa hover:border-framboesa hover:bg-blush",
+  ghost: "text-framboesa hover:text-framboesa-escuro",
+  white: "bg-white text-framboesa hover:bg-blush hover:-translate-y-0.5",
   aqua: "bg-aqua text-petrol shadow-suave hover:bg-aqua-claro hover:-translate-y-0.5",
   petrol: "bg-petrol text-marfim shadow-suave hover:bg-petrol-suave hover:-translate-y-0.5",
   "outline-light":
@@ -18,8 +19,8 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  md: "px-6 py-3 text-sm",
-  lg: "px-8 py-4 text-base",
+  md: "px-5 py-2.5 text-sm",
+  lg: "px-7 py-3.5 text-base",
 };
 
 type Props = {

@@ -5,7 +5,7 @@ export function Marquee({ items }: { items: string[] }) {
       {items.map((t) => (
         <li key={t} className="flex items-center gap-10 whitespace-nowrap font-display text-2xl italic text-petrol md:text-3xl">
           {t}
-          <span className="h-1.5 w-1.5 rounded-full bg-rose" />
+          <span className="h-1.5 w-1.5 rounded-full bg-framboesa" />
         </li>
       ))}
     </ul>

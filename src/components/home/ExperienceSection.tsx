@@ -25,7 +25,7 @@ export function ExperienceSection() {
           />
         </Reveal>
         <Reveal delay={120}>
-          <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua-escuro">
+          <p className="text-sm font-medium text-framboesa-escuro">
             Ambiente &amp; experiência
           </p>
           <h2 className="mt-3 font-display text-3xl leading-tight text-grafite md:text-4xl">
@@ -39,7 +39,7 @@ export function ExperienceSection() {
           <ul className="mt-6 space-y-3 text-sm text-grafite">
             {pontos.map((p) => (
               <li key={p} className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 rounded-full bg-rose" aria-hidden /> {p}
+                <span className="h-1.5 w-1.5 rounded-full bg-framboesa" aria-hidden /> {p}
               </li>
             ))}
           </ul>

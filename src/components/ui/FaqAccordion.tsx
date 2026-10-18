@@ -23,7 +23,7 @@ export function FaqAccordion({ items }: { items: { question: string; answer: str
                 <span className="font-display text-lg text-grafite">{item.question}</span>
                 <span
                   className={cn(
-                    "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-aqua/50 text-rose transition-transform duration-300",
+                    "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-aqua/50 text-framboesa transition-transform duration-300",
                     isOpen && "rotate-45",
                   )}
                   aria-hidden

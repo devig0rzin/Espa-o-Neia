@@ -114,19 +114,19 @@ export function Journey() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua-escuro">Sua jornada</p>
+            <p className="text-sm font-medium text-framboesa-escuro">Sua jornada</p>
             <h2
               id="jornada-titulo"
               className="mt-3 font-display text-3xl leading-tight text-grafite md:text-5xl"
             >
-              Do primeiro contato ao <span className="italic text-rose">resultado</span>
+              Do primeiro contato ao <span className="italic text-framboesa">resultado</span>
             </h2>
 
             <div className="relative mt-10 min-h-[11rem]">
               {steps.map((s, i) => (
                 <div key={s.n} className={`j-step ${i === 0 ? "" : "absolute inset-x-0 top-0"}`}>
                   <div className="flex items-baseline gap-5">
-                    <span className="font-display text-5xl text-rose">{s.n}</span>
+                    <span className="font-display text-5xl text-framboesa">{s.n}</span>
                     <h3 className="font-display text-3xl text-grafite">{s.title}</h3>
                   </div>
                   <p className="mt-3 max-w-md leading-relaxed text-grafite-suave">{s.text}</p>
@@ -135,7 +135,7 @@ export function Journey() {
             </div>
 
             <div className="mt-8 h-px w-full max-w-md bg-nude-escuro/60" aria-hidden>
-              <div className="j-progress h-px origin-left scale-x-0 bg-rose" />
+              <div className="j-progress h-px origin-left scale-x-0 bg-framboesa" />
             </div>
           </div>
         </div>

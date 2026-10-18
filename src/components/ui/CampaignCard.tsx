@@ -20,7 +20,7 @@ export function CampaignCard({ campaign }: { campaign: Campaign }) {
       )}
     >
       {/* Selo promocional */}
-      <span className="inline-flex w-fit items-center rounded-full bg-rose/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-rose">
+      <span className="inline-flex w-fit items-center rounded-full bg-rose/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-framboesa">
         {campaign.badge}
       </span>
 
@@ -35,7 +35,7 @@ export function CampaignCard({ campaign }: { campaign: Campaign }) {
           <span className="text-sm text-grafite-suave line-through">{campaign.referencePrice}</span>
         )}
         {campaign.currentPrice && (
-          <span className="font-display text-2xl text-rose">{campaign.currentPrice}</span>
+          <span className="font-display text-2xl text-framboesa">{campaign.currentPrice}</span>
         )}
       </div>
       {campaign.installment && <p className="mt-1 text-xs text-grafite-suave">{campaign.installment}</p>}

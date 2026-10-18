@@ -152,10 +152,10 @@ export function BookingWizard({ services, initialServiceId, showPrices, demo = f
         <p className="mt-4 text-sm text-grafite-suave">Código <strong className="tracking-widest text-grafite">{done.code}</strong> · {site.address.street}, {site.address.city}</p>
         {demo && <p className="mt-3 text-xs text-rose-escuro">Prévia: nenhum agendamento real foi criado.</p>}
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <a href={googleCalendarUrl(`${done.service} — Espaço Néia`, done.startsAt, done.durationMin, `${site.address.street}, ${site.address.city}`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-rose px-6 py-3 text-sm font-medium text-marfim shadow-suave transition hover:bg-rose-escuro">
+          <a href={googleCalendarUrl(`${done.service} — Espaço Néia`, done.startsAt, done.durationMin, `${site.address.street}, ${site.address.city}`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-framboesa px-6 py-3 text-sm font-medium text-marfim shadow-suave transition hover:bg-framboesa-escuro">
             Adicionar ao Google Agenda
           </a>
-          <a href={wa} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-grafite/20 px-6 py-3 text-sm font-medium text-grafite transition hover:border-rose hover:text-rose">
+          <a href={wa} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-grafite/20 px-6 py-3 text-sm font-medium text-grafite transition hover:border-framboesa hover:text-framboesa">
             Avisar no WhatsApp
           </a>
         </div>
@@ -169,9 +169,9 @@ export function BookingWizard({ services, initialServiceId, showPrices, demo = f
       <ol className="mb-8 flex items-center gap-2 text-xs sm:text-sm" aria-label="Etapas do agendamento">
         {STEPS.map((label, i) => (
           <li key={label} className="flex flex-1 items-center gap-2" aria-current={i === step ? "step" : undefined}>
-            <span className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-colors", i <= step ? "border-rose bg-rose text-marfim" : "border-nude-escuro text-grafite-suave")}>{i + 1}</span>
+            <span className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-colors", i <= step ? "border-framboesa bg-framboesa text-marfim" : "border-nude-escuro text-grafite-suave")}>{i + 1}</span>
             <span className={cn("hidden sm:inline", i === step ? "font-medium text-grafite" : "text-grafite-suave")}>{label}</span>
-            {i < STEPS.length - 1 && <span className={cn("h-px flex-1 transition-colors", i < step ? "bg-rose" : "bg-nude-escuro/60")} aria-hidden />}
+            {i < STEPS.length - 1 && <span className={cn("h-px flex-1 transition-colors", i < step ? "bg-framboesa" : "bg-nude-escuro/60")} aria-hidden />}
           </li>
         ))}
       </ol>
@@ -183,11 +183,11 @@ export function BookingWizard({ services, initialServiceId, showPrices, demo = f
           <div className="mt-6 space-y-6">
             {grouped.map(([cat, list]) => (
               <fieldset key={cat}>
-                <legend className="mb-2 text-xs font-semibold uppercase tracking-wider2 text-aqua-escuro">{cat}</legend>
+                <legend className="mb-2 text-sm font-medium text-framboesa-escuro">{cat}</legend>
                 <div className="grid gap-2 sm:grid-cols-2">
                   {list.map((s) => (
                     <button key={s.id} type="button" aria-pressed={s.id === serviceId} onClick={() => pickService(s.id)}
-                      className={cn("flex flex-col rounded-2xl border p-4 text-left transition", s.id === serviceId ? "border-rose bg-rose/10 shadow-card" : "border-nude-escuro/60 hover:border-rose/60")}>
+                      className={cn("flex flex-col rounded-2xl border p-4 text-left transition", s.id === serviceId ? "border-framboesa bg-rose/10 shadow-card" : "border-nude-escuro/60 hover:border-rose/60")}>
                       <span className="font-medium text-grafite">{s.name}</span>
                       <span className="mt-1 text-xs text-grafite-suave">
                         {formatDuration(s.durationMin)}
@@ -213,7 +213,7 @@ export function BookingWizard({ services, initialServiceId, showPrices, demo = f
               const on = iso === date;
               return (
                 <button key={iso} type="button" role="radio" aria-checked={on} onClick={() => pickDate(iso)}
-                  className={cn("flex w-16 shrink-0 flex-col items-center rounded-2xl border py-3 transition", on ? "border-rose bg-rose text-marfim shadow-card" : "border-nude-escuro/60 hover:border-rose/60")}>
+                  className={cn("flex w-16 shrink-0 flex-col items-center rounded-2xl border py-3 transition", on ? "border-framboesa bg-framboesa text-marfim shadow-card" : "border-nude-escuro/60 hover:border-rose/60")}>
                   <span className="text-[11px] uppercase tracking-wide opacity-80">{fmtWeekday.format(d).replace(".", "")}</span>
                   <span className="font-display text-2xl leading-none">{d.getDate()}</span>
                   <span className="text-[11px] uppercase opacity-80">{fmtMonth.format(d).replace(".", "")}</span>
@@ -269,18 +269,18 @@ export function BookingWizard({ services, initialServiceId, showPrices, demo = f
           </div>
           <label className="mt-5 flex items-start gap-3 text-sm text-grafite-suave">
             <input type="checkbox" checked={form.consent} onChange={(e) => setForm({ ...form, consent: e.target.checked })} className="mt-1 h-4 w-4 accent-rose" aria-invalid={!!errors.consent} />
-            <span>Autorizo o Espaço Néia a entrar em contato por WhatsApp/e-mail sobre este agendamento, conforme a <a href="/politica-de-privacidade" className="text-rose underline">Política de Privacidade</a> (LGPD).</span>
+            <span>Autorizo o Espaço Néia a entrar em contato por WhatsApp/e-mail sobre este agendamento, conforme a <a href="/politica-de-privacidade" className="text-framboesa underline">Política de Privacidade</a> (LGPD).</span>
           </label>
           {errors.consent && <p className="mt-1 text-xs text-rose-escuro" role="alert">{errors.consent}</p>}
           {submitError && <p className="mt-4 rounded-xl bg-rose/10 px-4 py-3 text-sm text-rose-escuro" role="alert">{submitError}</p>}
-          <button type="submit" disabled={submitting} className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-rose px-8 py-4 text-base font-medium text-marfim shadow-suave transition hover:bg-rose-escuro disabled:opacity-60 sm:w-auto">
+          <button type="submit" disabled={submitting} className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-framboesa px-8 py-4 text-base font-medium text-marfim shadow-suave transition hover:bg-framboesa-escuro disabled:opacity-60 sm:w-auto">
             {submitting ? "Confirmando…" : "Confirmar agendamento"}
           </button>
         </form>
       )}
 
       <div className="mt-8 flex items-center justify-between border-t border-nude-escuro/40 pt-5">
-        <button type="button" onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={step === 0} className="text-sm text-grafite-suave transition hover:text-rose disabled:invisible">← Voltar</button>
+        <button type="button" onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={step === 0} className="text-sm text-grafite-suave transition hover:text-framboesa disabled:invisible">← Voltar</button>
         {step < 2 && (
           <button type="button" onClick={() => setStep((s) => s + 1)} disabled={!canNext} className="rounded-full bg-grafite px-7 py-3 text-sm font-medium text-marfim transition hover:bg-petrol disabled:cursor-not-allowed disabled:opacity-40">Continuar</button>
         )}
@@ -290,7 +290,7 @@ export function BookingWizard({ services, initialServiceId, showPrices, demo = f
 }
 
 const inputCls = (err?: string) =>
-  cn("w-full rounded-xl border bg-marfim px-4 py-3 text-sm text-grafite outline-none transition focus:border-rose", err ? "border-rose-escuro" : "border-nude-escuro/70");
+  cn("w-full rounded-xl border bg-marfim px-4 py-3 text-sm text-grafite outline-none transition focus:border-framboesa", err ? "border-rose-escuro" : "border-nude-escuro/70");
 
 function Field({ label, error, className, children }: { label: string; error?: string; className?: string; children: React.ReactNode }) {
   return (

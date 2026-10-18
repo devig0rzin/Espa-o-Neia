@@ -37,7 +37,7 @@ export default function SobrePage() {
       <Section className="bg-gradient-to-b from-creme to-marfim">
         <div className="container-narrow text-center">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">Sobre nós</p>
+            <p className="text-sm font-medium text-framboesa">Sobre nós</p>
             <h1 className="mt-4 font-display text-4xl leading-tight text-grafite md:text-5xl">
               Beleza que nasce do cuidado
             </h1>
@@ -82,7 +82,7 @@ export default function SobrePage() {
           {valores.map((v, i) => (
             <Reveal key={v.title} delay={i * 80}>
               <div className="h-full rounded-3xl bg-marfim p-8 shadow-card">
-                <h3 className="font-display text-xl text-rose">{v.title}</h3>
+                <h3 className="font-display text-xl text-framboesa">{v.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-grafite-suave">{v.text}</p>
               </div>
             </Reveal>
@@ -108,7 +108,7 @@ export default function SobrePage() {
               >
                 <ImagePlaceholder label="Foto do profissional" ratio="aspect-square" className="mb-5" />
                 <p className="font-medium text-grafite">{member.name}</p>
-                <p className="text-sm text-rose">{member.role}</p>
+                <p className="text-sm text-framboesa">{member.role}</p>
                 <p className="mt-2 text-sm leading-relaxed text-grafite-suave">{member.bio}</p>
               </div>
             ))}

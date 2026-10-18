@@ -9,11 +9,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   const instagram = publicInstagram();
   return (
-    <footer className="relative overflow-hidden border-t border-nude-escuro/40 bg-creme">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-aqua/10 blur-3xl"
-      />
+    <footer className="relative overflow-hidden bg-petrol text-white">
       <div className="container-wide relative grid gap-12 py-16 md:grid-cols-4">
         {/* Marca */}
         <div className="md:col-span-1">
@@ -22,9 +18,9 @@ export function Footer() {
             alt="Espaço Néia Beleza e Estética"
             width={320}
             height={320}
-            className="h-20 w-auto object-contain mix-blend-multiply"
+            className="h-20 w-auto rounded-2xl bg-white object-contain p-2"
           />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-grafite-suave">
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/75">
             Estética avançada, emagrecimento, beleza e bem-estar em Cotia, Granja Viana e região.
           </p>
           {instagram && (
@@ -32,7 +28,7 @@ export function Footer() {
               href={instagram.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 text-sm text-rose hover:text-rose-escuro"
+              className="mt-4 inline-flex items-center gap-2 text-sm text-aqua-claro hover:text-white"
             >
               <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden>
                 <path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 2.2.28 2.9.55.7.28 1.3.65 1.9 1.25.6.6.97 1.2 1.25 1.9.27.7.49 1.7.55 2.9.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.28 2.2-.55 2.9-.28.7-.65 1.3-1.25 1.9-.6.6-1.2.97-1.9 1.25-.7.27-1.7.49-2.9.55-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-2.2-.28-2.9-.55-.7-.28-1.3-.65-1.9-1.25-.6-.6-.97-1.2-1.25-1.9-.27-.7-.49-1.7-.55-2.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.28-2.2.55-2.9.28-.7.65-1.3 1.25-1.9.6-.6 1.2-.97 1.9-1.25.7-.27 1.7-.49 2.9-.55C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.52 0-4.76.07-1 .05-1.6.21-2 .36-.5.2-.86.43-1.24.81-.38.38-.6.74-.81 1.24-.15.4-.3 1-.36 2C2.76 9.48 2.76 9.85 2.76 13s0 3.52.07 4.76c.05 1 .21 1.6.36 2 .2.5.43.86.81 1.24.38.38.74.6 1.24.81.4.15 1 .3 2 .36 1.24.06 1.6.07 4.76.07s3.52 0 4.76-.07c1-.05 1.6-.21 2-.36.5-.2.86-.43 1.24-.81.38-.38.6-.74.81-1.24.15-.4.3-1 .36-2 .06-1.24.07-1.6.07-4.76s0-3.52-.07-4.76c-.05-1-.21-1.6-.36-2-.2-.5-.43-.86-.81-1.24a3.4 3.4 0 0 0-1.24-.81c-.4-.15-1-.3-2-.36C15.52 4 15.15 4 12 4z" />
@@ -45,11 +41,11 @@ export function Footer() {
 
         {/* Navegação */}
         <nav aria-label="Rodapé — navegação">
-          <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider2 text-aqua">Navegação</h3>
-          <ul className="space-y-2 text-sm text-grafite-suave">
+          <h3 className="mb-4 text-sm font-semibold text-white">Navegação</h3>
+          <ul className="space-y-2 text-sm text-white/75">
             {mainNav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-rose">
+                <Link href={item.href} className="hover:text-white">
                   {item.label}
                 </Link>
               </li>
@@ -59,11 +55,11 @@ export function Footer() {
 
         {/* Tratamentos */}
         <nav aria-label="Rodapé — tratamentos">
-          <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider2 text-aqua">Tratamentos</h3>
-          <ul className="space-y-2 text-sm text-grafite-suave">
+          <h3 className="mb-4 text-sm font-semibold text-white">Tratamentos</h3>
+          <ul className="space-y-2 text-sm text-white/75">
             {categories.map((c) => (
               <li key={c.slug}>
-                <Link href={`/servicos/${c.slug}`} className="hover:text-rose">
+                <Link href={`/servicos/${c.slug}`} className="hover:text-white">
                   {c.name}
                 </Link>
               </li>
@@ -73,8 +69,8 @@ export function Footer() {
 
         {/* Contato */}
         <div>
-          <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider2 text-aqua">Contato</h3>
-          <address className="space-y-2 text-sm not-italic leading-relaxed text-grafite-suave">
+          <h3 className="mb-4 text-sm font-semibold text-white">Contato</h3>
+          <address className="space-y-2 text-sm not-italic leading-relaxed text-white/75">
             <p>{site.address.street}</p>
             <p>
               {site.address.district}
@@ -82,7 +78,7 @@ export function Footer() {
               {site.address.city} — {site.address.state}, {site.address.zip}
             </p>
             <p>
-              <a href={`tel:+${site.whatsappNumber}`} className="hover:text-rose">
+              <a href={`tel:+${site.whatsappNumber}`} className="hover:text-white">
                 {site.phoneDisplay}
               </a>
             </p>
@@ -90,12 +86,12 @@ export function Footer() {
               href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block pt-1 text-rose hover:text-rose-escuro"
+              className="inline-block pt-1 text-aqua-claro hover:text-white"
             >
               Falar no WhatsApp →
             </a>
           </address>
-          <div className="mt-5 border-t border-nude-escuro/40 pt-4 text-xs text-grafite-suave">
+          <div className="mt-5 border-t border-white/15 pt-4 text-xs text-white/75">
             {site.hours.map((h) => (
               <div key={h.label} className="flex justify-between gap-4">
                 <span>{h.label}</span>
@@ -106,16 +102,16 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-nude-escuro/40">
-        <div className="container-wide flex flex-col items-center justify-between gap-3 py-6 text-xs text-grafite-suave md:flex-row">
+      <div className="border-t border-white/15">
+        <div className="container-wide flex flex-col items-center justify-between gap-3 py-6 text-xs text-white/75 md:flex-row">
           <p>
             © {year} {site.legalName}. Todos os direitos reservados.
           </p>
           <div className="flex gap-5">
-            <Link href="/politica-de-privacidade" className="hover:text-rose">
+            <Link href="/politica-de-privacidade" className="hover:text-white">
               Política de Privacidade
             </Link>
-            <Link href="/termos-de-uso" className="hover:text-rose">
+            <Link href="/termos-de-uso" className="hover:text-white">
               Termos de Uso
             </Link>
           </div>

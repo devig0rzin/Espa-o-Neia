@@ -47,7 +47,7 @@ export default async function PrecosPage() {
                       </p>
                     </div>
                     <p className="font-display text-xl text-grafite">{showPrices || s.priceType === "gratuito" ? formatPrice(s) : "Sob avaliação"}</p>
-                    <Link href={`/agendar?servico=${s.id}`} className="rounded-full border border-grafite/20 px-5 py-2 text-sm text-grafite transition hover:border-rose hover:text-rose">Agendar</Link>
+                    <Link href={`/agendar?servico=${s.id}`} className="rounded-full border border-grafite/20 px-5 py-2 text-sm text-grafite transition hover:border-framboesa hover:text-framboesa">Agendar</Link>
                   </li>
                 ))}
               </ul>

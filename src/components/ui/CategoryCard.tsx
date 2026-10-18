@@ -40,7 +40,7 @@ export function CategoryCard({ category }: { category: Category }) {
       <div className="flex flex-1 flex-col p-6">
         <h3 className="font-display text-xl text-grafite">{category.name}</h3>
         <p className="mt-3 flex-1 text-sm leading-relaxed text-grafite-suave">{category.shortDescription}</p>
-        <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-rose transition-all group-hover:gap-2">
+        <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-framboesa transition-all group-hover:gap-2">
           Conhecer tratamentos <span aria-hidden>→</span>
         </span>
       </div>

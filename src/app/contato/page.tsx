@@ -21,7 +21,7 @@ export default function ContatoPage() {
       <Section className="bg-gradient-to-b from-creme to-marfim pb-10">
         <div className="container-narrow text-center">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-wider2 text-aqua">
+            <p className="text-sm font-medium text-framboesa">
               Fale com o Espaço Néia
             </p>
             <h1 className="mt-4 font-display text-4xl leading-tight text-grafite md:text-5xl">
@@ -57,7 +57,7 @@ export default function ContatoPage() {
                 <div>
                   <h3 className="font-semibold uppercase tracking-wider text-aqua">Telefone / WhatsApp</h3>
                   <p className="mt-2 text-grafite-suave">
-                    <a href={`tel:+${site.whatsappNumber}`} className="hover:text-rose">
+                    <a href={`tel:+${site.whatsappNumber}`} className="hover:text-framboesa">
                       {site.phoneDisplay}
                     </a>
                   </p>
