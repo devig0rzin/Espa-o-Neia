@@ -89,7 +89,12 @@ export function Journey() {
         className="relative flex min-h-screen items-center overflow-hidden bg-creme py-16"
         aria-labelledby="jornada-titulo"
       >
-        <div className="container-wide grid items-center gap-10 lg:grid-cols-2">
+        <div
+          className={cn(
+            "container-wide grid items-center gap-10",
+            useFrames ? "lg:grid-cols-[1.5fr_1fr]" : "lg:grid-cols-2",
+          )}
+        >
           <div
             className={cn(
               "relative w-full overflow-hidden rounded-3xl border border-nude-escuro/40 shadow-suave",
