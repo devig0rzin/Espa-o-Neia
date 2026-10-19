@@ -14,11 +14,11 @@ export function Footer() {
         {/* Marca */}
         <div className="md:col-span-1">
           <Image
-            src="/images/logo/logo-espaco-neia.jpg"
+            src="/images/logo/logo-espaco-neia.png"
             alt="Espaço Néia Beleza e Estética"
-            width={320}
-            height={320}
-            className="h-20 w-auto rounded-2xl bg-white object-contain p-2"
+            width={900}
+            height={440}
+            className="h-20 w-auto rounded-2xl bg-white object-contain px-4 py-2"
           />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/75">
             Estética avançada, emagrecimento, beleza e bem-estar em Cotia, Granja Viana e região.
@@ -106,6 +106,17 @@ export function Footer() {
         <div className="container-wide flex flex-col items-center justify-between gap-3 py-6 text-xs text-white/75 md:flex-row">
           <p>
             © {year} {site.legalName}. Todos os direitos reservados.
+          </p>
+          <p>
+            Site feito por{" "}
+            <a
+              href="https://www.automationtoyou.com.br/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white hover:text-aqua-claro"
+            >
+              Automation to You
+            </a>
           </p>
           <div className="flex gap-5">
             <Link href="/politica-de-privacidade" className="hover:text-white">

@@ -5,12 +5,13 @@ import { TreatmentsCarousel, type TreatmentItem } from "@/components/home/Treatm
 import { TreatmentFinder } from "@/components/home/TreatmentFinder";
 import { TestimonialsSlider } from "@/components/home/TestimonialsSlider";
 import { Journey } from "@/components/home/Journey";
+import { SpaceTour } from "@/components/home/SpaceTour";
+import { scrollSequence } from "@/data/media";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { CampaignCard } from "@/components/ui/CampaignCard";
 import { FaqGrid } from "@/components/ui/FaqGrid";
 import { Button } from "@/components/ui/Button";
-import { Placeholder } from "@/components/ui/Placeholder";
 import { FaqJsonLd } from "@/components/seo/JsonLd";
 import { campaigns } from "@/data/campaigns";
 import { liveCampaigns } from "@/lib/campaigns";
@@ -154,7 +155,7 @@ export default function HomePage() {
             <SectionHeading
               align="left"
               title="Pertinho de você, no coração de Cotia"
-              description={`${site.address.street}, ${site.address.district}. Atendemos Cotia, Granja Viana e região.`}
+              description={`${site.address.street} - ${site.address.district}, ${site.address.city} - ${site.address.state}, ${site.address.zip}. Atendemos Cotia, Granja Viana e região.`}
             />
             <ol className="mt-8 divide-y divide-blush-borda border-y border-blush-borda">
               {motivos.map((m, i) => (
@@ -191,13 +192,6 @@ export default function HomePage() {
           <Reveal className="mt-10">
             <TestimonialsSlider items={depoimentos} image={images.depoimentos} />
           </Reveal>
-          {depoimentos.some((t) => t.status === "draft") && (
-            <Placeholder label="Depoimentos" className="mx-auto mt-8 max-w-2xl text-center">
-              Depoimentos fictícios, visíveis só no preview. Substitua pelo texto real autorizado pelas
-              clientes em <code>src/data/testimonials.ts</code> e marque{" "}
-              <code>status: &quot;approved&quot;</code>.
-            </Placeholder>
-          )}
         </Section>
       )}
 
@@ -269,8 +263,8 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* JORNADA — seção fixada com animação no scroll */}
-      <Journey />
+      {/* TOUR PELO ESPAÇO — vídeo quadro a quadro no scroll (sem quadros, cai na jornada com fotos) */}
+      {scrollSequence.jornada.pattern ? <SpaceTour /> : <Journey />}
 
       {/* CAMPANHAS EM DESTAQUE — some quando não há campanha vigente */}
       {campanhas.length > 0 && (
@@ -281,7 +275,7 @@ export default function HomePage() {
             description="Protocolos e pacotes selecionados para você começar. Consulte disponibilidade e condições atualizadas."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {campanhas.slice(0, 3).map((c, i) => (
+            {campanhas.slice(0, 6).map((c, i) => (
               <Reveal key={c.id} delay={i * 80}>
                 <CampaignCard campaign={c} />
               </Reveal>

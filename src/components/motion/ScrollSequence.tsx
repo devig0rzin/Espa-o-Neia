@@ -25,24 +25,31 @@ export const ScrollSequence = forwardRef<ScrollSequenceHandle, Props>(function S
 ) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const images = useRef<(HTMLImageElement | undefined)[]>([]);
-  const current = useRef(0);
+  // Quadro desenhado (fracionário, para suavizar) e quadro-alvo vindo do scroll.
+  const shown = useRef(0);
+  const drawn = useRef(-1);
+  const target = useRef(0);
+  const raf = useRef<number | null>(null);
 
-  const draw = useCallback((index: number) => {
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
-    let img = images.current[index];
-    // Se o quadro ainda não chegou, usa o mais próximo já carregado.
-    for (let d = 1; !img?.complete && d < frames; d++) {
-      img = images.current[index - d]?.complete ? images.current[index - d] : images.current[index + d];
-    }
-    if (!img?.complete || !img.naturalWidth) return;
-    if (canvas.width !== img.naturalWidth) {
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight;
-    }
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  }, [frames]);
+  const draw = useCallback(
+    (index: number) => {
+      const canvas = canvasRef.current;
+      const ctx = canvas?.getContext("2d");
+      if (!canvas || !ctx) return;
+      let img = images.current[index];
+      // Se o quadro ainda não chegou, usa o mais próximo já carregado.
+      for (let d = 1; !img?.complete && d < frames; d++) {
+        img = images.current[index - d]?.complete ? images.current[index - d] : images.current[index + d];
+      }
+      if (!img?.complete || !img.naturalWidth) return;
+      if (canvas.width !== img.naturalWidth) {
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+      }
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    },
+    [frames],
+  );
 
   useEffect(() => {
     const load = (i: number) => {
@@ -59,17 +66,34 @@ export const ScrollSequence = forwardRef<ScrollSequenceHandle, Props>(function S
     });
   }, [pattern, frames, pad, draw]);
 
+  // Aproxima o quadro mostrado do alvo a cada frame da tela (interpolação), em vez de saltar.
+  const tick = useCallback(() => {
+    const diff = target.current - shown.current;
+    shown.current = Math.abs(diff) < 0.05 ? target.current : shown.current + diff * 0.18;
+    const index = Math.round(shown.current);
+    if (index !== drawn.current) {
+      drawn.current = index;
+      draw(index);
+    }
+    raf.current = shown.current === target.current ? null : requestAnimationFrame(tick);
+  }, [draw]);
+
+  useEffect(
+    () => () => {
+      if (raf.current) cancelAnimationFrame(raf.current);
+    },
+    [],
+  );
+
   useImperativeHandle(
     ref,
     () => ({
       setProgress(p: number) {
-        const index = Math.min(frames - 1, Math.max(0, Math.round(p * (frames - 1))));
-        if (index === current.current) return;
-        current.current = index;
-        requestAnimationFrame(() => draw(index));
+        target.current = Math.min(frames - 1, Math.max(0, p * (frames - 1)));
+        if (raf.current == null) raf.current = requestAnimationFrame(tick);
       },
     }),
-    [frames, draw],
+    [frames, tick],
   );
 
   return <canvas ref={canvasRef} role="img" aria-label={ariaLabel} className={className} />;

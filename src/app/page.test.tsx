@@ -61,7 +61,6 @@ describe("sistema de rascunho no preview", () => {
     vi.setSystemTime(new Date("2026-08-01T12:00:00-03:00"));
     const html = await render("preview", home);
     expect(html).toContain("Histórias de quem confia");
-    expect(html).toContain("src/data/testimonials.ts");
     expect(html).toContain("Condições especiais em destaque");
     expect(html).toContain("Valor fictício");
   });

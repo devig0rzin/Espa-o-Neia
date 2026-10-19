@@ -60,15 +60,15 @@ export function Header() {
       <header className="sticky top-0 z-50 border-b border-blush-borda bg-white/95 backdrop-blur-md">
         <div className="container-wide flex items-center justify-between gap-4 py-2.5">
           <div className="flex items-center gap-6">
-            {/* Logo real da marca — public/images/logo/logo-espaco-neia.jpg */}
+            {/* Logo real da marca — public/images/logo/logo-espaco-neia.png (fundo transparente) */}
             <Link href="/" className="flex items-center" aria-label="Espaço Néia — página inicial">
               <Image
-                src="/images/logo/logo-espaco-neia.jpg"
+                src="/images/logo/logo-espaco-neia.png"
                 alt="Espaço Néia Beleza e Estética"
-                width={320}
-                height={320}
+                width={900}
+                height={440}
                 priority
-                className="h-14 w-auto object-contain mix-blend-multiply md:h-16"
+                className="h-11 w-auto object-contain md:h-14"
               />
             </Link>
             <span className="hidden h-10 w-px bg-blush-borda lg:block" aria-hidden />

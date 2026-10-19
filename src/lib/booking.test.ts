@@ -34,7 +34,7 @@ describe("agenda", () => {
 describe("formatação", () => {
   it("preços", () => {
     expect(formatPrice({ price: 0, priceType: "gratuito" })).toBe("Gratuita");
-    expect(formatPrice({ price: 180, priceType: "fixo" })).toMatch(/180/);
+    expect(formatPrice({ price: 180, priceType: "fixo" })).toMatch(/^a partir de .*180/);
     expect(formatPrice({ price: 650, priceType: "a partir de" })).toMatch(/^a partir de/);
   });
   it("duração", () => {

@@ -60,10 +60,11 @@ export function slotsForDay(iso: string, durationMin: number): string[] {
   return out;
 }
 
+/** Preço exibido. Todo valor pago aparece como "a partir de" (o protocolo final sai na avaliação). */
 export function formatPrice(s: Pick<Service, "price" | "priceType">): string {
   if (s.priceType === "gratuito") return "Gratuita";
   const v = s.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
-  return s.priceType === "a partir de" ? `a partir de ${v}` : v;
+  return `a partir de ${v}`;
 }
 
 export function formatDuration(min: number): string {
@@ -104,7 +105,11 @@ export function validateBooking(input: Partial<BookingInput>): BookingErrors {
 
 /** Link "Adicionar ao Google Agenda" para a cliente. startsAtISO em UTC. */
 export function googleCalendarUrl(title: string, startsAtISO: string, durationMin: number, location: string) {
-  const fmt = (d: Date) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  const fmt = (d: Date) =>
+    d
+      .toISOString()
+      .replace(/[-:]/g, "")
+      .replace(/\.\d{3}/, "");
   const start = new Date(startsAtISO);
   const end = new Date(start.getTime() + durationMin * 60000);
   const q = new URLSearchParams({
