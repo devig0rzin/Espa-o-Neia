@@ -75,7 +75,7 @@ export function Footer() {
             <p>
               {site.address.district}
               <br />
-              {site.address.city} — {site.address.state}, {site.address.zip}
+              {site.address.city} - {site.address.state}, {site.address.zip}
             </p>
             <p>
               <a href={`tel:+${site.whatsappNumber}`} className="hover:text-white">
