@@ -37,8 +37,8 @@ export const media = {
  */
 export const scrollSequence = {
   jornada: {
-    pattern: null as string | null, // ex.: "/frames/jornada/{n}.webp"
-    frames: 0,
+    pattern: "/frames/jornada/{n}.webp" as string | null, // 96 quadros do vídeo (8 s a 12 qps)
+    frames: 96,
     pad: 4,
   },
 };

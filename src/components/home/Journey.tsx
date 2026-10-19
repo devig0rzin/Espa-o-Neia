@@ -6,25 +6,26 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSequence, type ScrollSequenceHandle } from "@/components/motion/ScrollSequence";
 import { scrollSequence } from "@/data/media";
+import { cn } from "@/lib/utils";
 
 const steps = [
   {
     n: "01",
     title: "Avaliação",
     text: "Conversamos sobre seus objetivos, histórico e expectativas — sem pressa e sem compromisso.",
-    image: "/images/ilustrativas/cuidado-facial-gotas.png",
+    image: "/images/site/avaliacao.jpg",
   },
   {
     n: "02",
     title: "Plano personalizado",
     text: "Desenhamos o protocolo ideal para o seu momento, com metas realistas e frequência clara.",
-    image: "/images/ilustrativas/massagem-corporal.png",
+    image: "/images/site/servicos/limpeza-de-pele.jpg",
   },
   {
     n: "03",
     title: "Acompanhamento",
     text: "Cuidamos de você a cada sessão, com ajustes quando necessário e orientação para casa.",
-    image: "/images/ilustrativas/spa-pedicure-manicure.png",
+    image: "/images/site/sobre-bem-estar.jpg",
   },
 ];
 
@@ -67,10 +68,12 @@ export function Journey() {
         if (i > 0) {
           tl.to(panels[i - 1], { autoAlpha: 0, y: -40, duration: 0.4 }, i - 0.4);
           tl.to(p, { autoAlpha: 1, y: 0, duration: 0.4 }, i - 0.2);
-          tl.to(imgs[i - 1], { autoAlpha: 0, duration: 0.4 }, i - 0.4);
-          tl.to(imgs[i], { autoAlpha: 1, duration: 0.4 }, i - 0.3);
+          if (imgs[i]) {
+            tl.to(imgs[i - 1], { autoAlpha: 0, duration: 0.4 }, i - 0.4);
+            tl.to(imgs[i], { autoAlpha: 1, duration: 0.4 }, i - 0.3);
+          }
         }
-        tl.to(imgs[i], { scale: 1.08, duration: 1 }, i);
+        if (imgs[i]) tl.to(imgs[i], { scale: 1.08, duration: 1 }, i);
       });
     });
 
@@ -87,7 +90,12 @@ export function Journey() {
         aria-labelledby="jornada-titulo"
       >
         <div className="container-wide grid items-center gap-10 lg:grid-cols-2">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-nude-escuro/40 shadow-suave lg:aspect-[4/5] lg:max-h-[78vh]">
+          <div
+            className={cn(
+              "relative w-full overflow-hidden rounded-3xl border border-nude-escuro/40 shadow-suave",
+              useFrames ? "aspect-video" : "aspect-[4/3] lg:aspect-[4/5] lg:max-h-[78vh]",
+            )}
+          >
             {useFrames ? (
               <ScrollSequence
                 ref={seq}

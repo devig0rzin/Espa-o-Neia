@@ -140,7 +140,7 @@ export default function SobrePage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-nude-escuro/40 shadow-card">
                 <Image
-                  src="/images/ilustrativas/spa-pedicure-manicure.png"
+                  src="/images/site/banner-agende.jpg"
                   alt="Ambiente ilustrativo de atendimento no Espaço Néia"
                   fill
                   sizes="25vw"
@@ -149,7 +149,7 @@ export default function SobrePage() {
               </div>
               <div className="relative mt-8 aspect-[3/4] overflow-hidden rounded-3xl border border-nude-escuro/40 shadow-card">
                 <Image
-                  src="/images/ilustrativas/micropigmentacao-sobrancelha.png"
+                  src="/images/site/avaliacao.jpg"
                   alt="Ambiente ilustrativo de procedimento facial no Espaço Néia"
                   fill
                   sizes="25vw"

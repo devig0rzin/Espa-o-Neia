@@ -3,62 +3,53 @@
  *  IMAGENS DO SITE — EDITE AQUI QUANDO AS FOTOS FICAREM PRONTAS
  * ============================================================
  *  Cada chave abaixo é um "espaço de foto" do layout. Hoje elas
- *  apontam para as ilustrações provisórias. Quando as imagens
- *  geradas (ChatGPT) ficarem prontas:
+ *  apontam para as fotos em public/images/site/. Para trocar uma foto:
  *
- *  1. Salve o arquivo em public/images/site/ com o nome sugerido
- *     no comentário de cada linha (ex.: hero-1.jpg)
- *  2. Troque o caminho da linha correspondente.
+ *  1. Salve o novo arquivo em public/images/site/ com o MESMO nome
+ *     (ex.: hero-1.jpg) — pronto, nada mais a mudar; ou
+ *  2. Use outro nome e ajuste a linha correspondente abaixo.
  *
  *  Os prompts para gerar cada imagem estão em docs/prompts-imagens.md.
  * ============================================================
  */
 
-const ilustr = {
-  facial: "/images/ilustrativas/cuidado-facial-gotas.png",
-  corpo: "/images/ilustrativas/massagem-corporal.png",
-  sobrancelha: "/images/ilustrativas/micropigmentacao-sobrancelha.png",
-  maos: "/images/ilustrativas/spa-pedicure-manicure.png",
-  testa: "/images/real/procedimento-testa-botox-real.png",
-  labios: "/images/real/procedimento-labios-real.png",
-  gluteo: "/images/real/procedimento-gluteo-real.png",
-};
+const site = (nome: string) => `/images/site/${nome}.jpg`;
 
 export const images = {
-  // Banner principal (3 slides) — proporção 4:3, ex.: hero-1.jpg, hero-2.jpg, hero-3.jpg
-  hero: [ilustr.facial, ilustr.corpo, ilustr.maos],
+  // Banner principal (3 slides) — proporção 4:3
+  hero: [site("hero-1"), site("hero-2"), site("hero-3")],
 
-  // Cards "Tratamentos mais procurados" — 4:5, ex.: servicos/limpeza-de-pele.jpg
+  // Cards "Tratamentos mais procurados" — 4:5
   servicos: {
-    "limpeza-de-pele": ilustr.facial,
-    micropigmentacao: ilustr.sobrancelha,
-    botox: ilustr.testa,
-    preenchimento: ilustr.labios,
-    criolipolise: ilustr.gluteo,
-    lipocavitacao: ilustr.corpo,
-    ultracavitacao: ilustr.corpo,
-    "drenagem-linfatica": ilustr.corpo,
-    "massagem-relaxante": ilustr.corpo,
-    manicure: ilustr.maos,
-    pedicure: ilustr.maos,
-    "alongamento-cilios": ilustr.sobrancelha,
-    corte: ilustr.facial,
+    "limpeza-de-pele": site("servicos/limpeza-de-pele"),
+    micropigmentacao: site("servicos/micropigmentacao"),
+    botox: site("servicos/botox"),
+    preenchimento: site("servicos/preenchimento"),
+    criolipolise: site("servicos/criolipolise"),
+    lipocavitacao: site("servicos/lipocavitacao"),
+    ultracavitacao: site("servicos/lipocavitacao"),
+    "drenagem-linfatica": site("servicos/drenagem-linfatica"),
+    "massagem-relaxante": site("servicos/massagem-relaxante"),
+    manicure: site("servicos/manicure"),
+    pedicure: site("servicos/pedicure"),
+    "alongamento-cilios": site("servicos/alongamento-cilios"),
+    corte: site("servicos/corte"),
   } as Record<string, string>,
-  servicoPadrao: ilustr.facial,
+  servicoPadrao: site("servicos/limpeza-de-pele"),
 
-  // Depoimentos (foto ao lado do texto) — 1:1, ex.: depoimentos.jpg
-  depoimentos: ilustr.facial,
+  // Depoimentos (foto ao lado do texto) — 1:1
+  depoimentos: site("depoimentos"),
 
-  // Faixa "Agende agora" — 16:9, ex.: banner-agende.jpg
-  bannerAgende: ilustr.corpo,
+  // Faixa "Agende agora" — 16:9
+  bannerAgende: site("banner-agende"),
 
-  // "Sobre": 3 cards com palavra sobreposta — 3:4, ex.: sobre-beleza.jpg etc.
+  // "Sobre": 3 cards com palavra sobreposta — 3:4
   sobre: {
-    beleza: ilustr.facial,
-    autoestima: ilustr.sobrancelha,
-    bemEstar: ilustr.maos,
+    beleza: site("sobre-beleza"),
+    autoestima: site("sobre-autoestima"),
+    bemEstar: site("sobre-bem-estar"),
   },
 
-  // Avaliação gratuita (bloco final) — 4:3, ex.: avaliacao.jpg
-  avaliacao: ilustr.facial,
+  // Avaliação gratuita (bloco final) — 4:3
+  avaliacao: site("avaliacao"),
 };

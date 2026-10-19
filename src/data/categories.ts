@@ -46,7 +46,7 @@ export const categories: Category[] = [
     heroTitle: "Emagrecimento e modelagem corporal com acompanhamento próximo",
     heroSubtitle:
       "Cada corpo tem uma história. Desenhamos protocolos personalizados que unem tecnologia estética e técnica — com metas realistas e cuidado em cada sessão.",
-    heroImage: "/images/ilustrativas/massagem-corporal.png",
+    heroImage: "/images/site/servicos/criolipolise.jpg",
     desires: [
       "Reduzir medidas e trabalhar a modelagem do contorno corporal",
       "Suavizar a aparência de gordura localizada em áreas específicas",
@@ -111,7 +111,7 @@ export const categories: Category[] = [
     heroTitle: "Estética facial para uma pele cuidada e natural",
     heroSubtitle:
       "Do cuidado de rotina aos procedimentos especializados, cuidamos da sua pele com técnica e delicadeza — valorizando seus traços com naturalidade.",
-    heroImage: "/images/ilustrativas/cuidado-facial-gotas.png",
+    heroImage: "/images/site/servicos/limpeza-de-pele.jpg",
     desires: [
       "Melhorar viço, textura e limpeza da pele",
       "Realçar o desenho das sobrancelhas com micropigmentação",
@@ -169,7 +169,7 @@ export const categories: Category[] = [
     heroTitle: "Estética corporal com cuidado do começo ao fim",
     heroSubtitle:
       "Cuidados para a pele e o bem-estar do corpo, pensados para se encaixar na sua rotina com conforto e resultado percebido com naturalidade.",
-    heroImage: "/images/ilustrativas/massagem-corporal.png",
+    heroImage: "/images/site/servicos/massagem-relaxante.jpg",
     desires: [
       "Aliviar a sensação de inchaço e retenção",
       "Momentos de relaxamento e bem-estar",
@@ -226,7 +226,7 @@ export const categories: Category[] = [
     heroTitle: "Beleza e cuidados tradicionais com padrão de clínica",
     heroSubtitle:
       "Os cuidados de beleza do dia a dia merecem o mesmo carinho e atenção aos detalhes dos nossos protocolos avançados.",
-    heroImage: "/images/ilustrativas/spa-pedicure-manicure.png",
+    heroImage: "/images/site/servicos/manicure.jpg",
     desires: [
       "Manter unhas e mãos sempre bem cuidadas",
       "Renovar o visual com corte e coloração",
