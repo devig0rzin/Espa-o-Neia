@@ -72,7 +72,7 @@ export function TestimonialsSlider({ items, image }: { items: Item[]; image: str
           )}
         </div>
       </div>
-      <div className="relative aspect-square lg:aspect-auto">
+      <div className="relative hidden lg:block">
         <Image src={image} alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
       </div>
     </div>

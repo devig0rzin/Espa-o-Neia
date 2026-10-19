@@ -104,7 +104,7 @@ export default function HomePage() {
       <section className="border-b border-blush-borda">
         <div className="container-wide grid divide-y divide-blush-borda md:grid-cols-3 md:divide-x md:divide-y-0">
           {destaques.map((d, i) => (
-            <Reveal key={d.title} delay={i * 80} className="py-8 md:px-8 md:py-10 md:first:pl-0">
+            <Reveal key={d.title} delay={i * 80} className="py-5 md:px-8 md:py-10 md:first:pl-0">
               <h2 className="font-display text-xl font-semibold text-petrol">{d.title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-grafite-suave">{d.text}</p>
               <Link
@@ -135,7 +135,7 @@ export default function HomePage() {
       <Section className="pt-4 md:pt-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
-            <div className="relative mx-auto aspect-square w-full max-w-md">
+            <div className="relative mx-auto aspect-square w-full max-w-[260px] sm:max-w-md">
               <div className="dots-rose absolute inset-0 rounded-full opacity-80 [mask-image:radial-gradient(circle,black_55%,transparent_72%)]" />
               <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
                 <span className="flex h-28 w-28 flex-col items-center justify-center rounded-full bg-white shadow-suave">
@@ -146,7 +146,7 @@ export default function HomePage() {
                 </span>
               </div>
               <div className="absolute bottom-6 left-2 md:left-0">
-                <p className="font-display text-4xl font-semibold text-framboesa">Cotia</p>
+                <p className="font-display text-3xl font-semibold text-framboesa md:text-4xl">Cotia</p>
                 <p className="text-sm text-grafite-suave">e Granja Viana</p>
               </div>
             </div>
@@ -233,9 +233,9 @@ export default function HomePage() {
           title="Cuidar da sua beleza é o nosso propósito"
           description="Acreditamos que beleza e autoestima caminham juntas. Nosso compromisso é com o seu bem-estar em cada detalhe, com técnica, tecnologia e um atendimento acolhedor."
         />
-        <div className="mt-12 grid gap-4 sm:grid-cols-3">
+        <div className="no-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 sm:mx-0 sm:mt-12 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0">
           {pilares.map((p, i) => (
-            <Reveal key={p.word} delay={i * 90}>
+            <Reveal key={p.word} delay={i * 90} className="w-[70%] shrink-0 snap-start sm:w-auto">
               <div className="group relative aspect-[3/4] overflow-hidden rounded-xl">
                 <Image
                   src={p.image}
@@ -274,9 +274,9 @@ export default function HomePage() {
             title="Condições especiais em destaque"
             description="Protocolos e pacotes selecionados para você começar. Consulte disponibilidade e condições atualizadas."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="no-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:mt-12 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 lg:grid-cols-3">
             {campanhas.slice(0, 6).map((c, i) => (
-              <Reveal key={c.id} delay={i * 80}>
+              <Reveal key={c.id} delay={i * 80} className="w-[85%] shrink-0 snap-start md:w-auto">
                 <CampaignCard campaign={c} />
               </Reveal>
             ))}

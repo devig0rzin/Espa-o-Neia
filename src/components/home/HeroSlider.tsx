@@ -86,7 +86,7 @@ export function HeroSlider() {
         </div>
 
         {/* Painel de texto */}
-        <div className="relative flex items-center bg-gradient-to-br from-rose-escuro to-framboesa px-6 py-12 text-white md:px-14 lg:py-16">
+        <div className="relative flex flex-col justify-center bg-gradient-to-br from-rose-escuro to-framboesa px-6 pb-8 pt-12 text-white md:px-14 lg:py-16">
           <Sparkle className="absolute -top-10 left-8 h-20 w-20 text-white lg:-left-12 lg:top-14 lg:h-24 lg:w-24" />
           <div className="relative grid w-full max-w-xl">
             {slides.map((s, i) => (
@@ -114,7 +114,7 @@ export function HeroSlider() {
           </div>
 
           {/* Controles */}
-          <div className="absolute bottom-6 right-6 flex items-center gap-3 md:right-14">
+          <div className="mt-8 flex items-center gap-3 lg:absolute lg:bottom-6 lg:right-14 lg:mt-0">
             <button
               type="button"
               onClick={() => go(index - 1)}

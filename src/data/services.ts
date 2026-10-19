@@ -6,10 +6,10 @@
  *  FALLBACK usado quando o banco não está configurado e no preview.
  *  Mantenha os `id` iguais aos do banco.
  *
- *  ⚠️ PREÇOS ESTIMADOS: referência de mercado para Cotia/Granja Viana,
- *  ainda NÃO confirmados pela Néia. `servicesStatus = "draft"` faz a
- *  página de preços aparecer só em preview. Para publicar, confirme os
- *  valores e troque para "approved".
+ *  PREÇOS DE REFERÊNCIA: média de mercado de Cotia/Granja Viana,
+ *  aprovados para publicação em 18/10/2026 e exibidos sempre como
+ *  "a partir de" (o valor final é definido na avaliação). Para voltar
+ *  a esconder os preços do site oficial, troque para "draft".
  * ============================================================
  */
 import type { ContentStatus } from "./types";
@@ -27,7 +27,7 @@ export type Service = {
   bookable: "sim" | "avaliacao";
 };
 
-export const servicesStatus: ContentStatus = "draft";
+export const servicesStatus: ContentStatus = "approved";
 
 export const services: Service[] = [
   { id: "avaliacao-gratuita", category: "Avaliação", name: "Avaliação gratuita", durationMin: 30, price: 0, priceType: "gratuito", bookable: "sim" },

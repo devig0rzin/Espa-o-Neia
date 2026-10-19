@@ -25,7 +25,7 @@ export const site = {
   ctaPrimary: "Agende sua avaliação gratuita",
 
   // URL final de produção (ajuste ao publicar na Vercel)
-  url: "https://www.espaconeia.com.br",
+  url: "https://espaco-neia.vercel.app",
 
   // ----- CONTATO -----
   phoneDisplay: "(11) 99604-5920", // exibido na tela

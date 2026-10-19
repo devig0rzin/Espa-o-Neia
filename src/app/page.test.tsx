@@ -36,7 +36,6 @@ describe("sistema de rascunho em produção", () => {
       "fictíci",
       "src/data",
       "A validar",
-      "R$",
       "formas de pagamento",
     ]) {
       expect(html, proibido).not.toContain(proibido);
