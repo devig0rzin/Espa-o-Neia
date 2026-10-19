@@ -90,7 +90,7 @@ export function SpaceTour() {
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-grafite/80 via-grafite/20 to-transparent md:bg-gradient-to-r md:from-grafite/75 md:via-grafite/25"
+          className="absolute inset-0 bg-gradient-to-t from-grafite/80 via-grafite/20 to-transparent md:bg-gradient-to-r md:from-grafite/85 md:via-grafite/45"
         />
 
         <div className="container-wide relative flex h-full flex-col justify-end pb-16 text-white md:justify-center md:pb-0">
